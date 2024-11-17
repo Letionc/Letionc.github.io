@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>来自Letionc的数字炸弹小游戏</title>
+ </head>
+ <body>
+  <h1>数字炸弹</h1>
+  <hr/>
+  <p id="min-light_text">最小值
+   <input type="text" id="min_input" value="1">
+  </p>
+  <p id="max-light_text">最大值
+  <input type="text" id="max_input" value="100">
+  </p>
+  <button type="button" id="start_button" onclick="start();">设置完点击
+  </button>
+  <noscript>
+   <p>对不起，您由于某些原因无法进行Javascript代码以致您可能无法正常游玩，请更换设备或更新浏览器后重试！</p>
+  </noscript>
+  <p id="input_text" style="display:none">
+  (加载中)</p>
+  <input type="text" id="input" style="display:none" value="">
+  <button type="button" id="input_button" onclick="inputFunction();"       style="display:none;font-size:20px;">输入完毕</button>
+  <a href="main.html" style="display:block" id=14>回到合集</a>
+  <script>
+   var input = null;
+   var min = null;
+   var max = null;
+   var bomb = null;
+   function start(){
+    document.getElementById("start_button").style.display = "none";
+    document.getElementById("min-light_text").style.display = "none";
+    document.getElementById("max-light_text").style.display = "none";
+    document.getElementById(14).style.display = "none";
+    document.getElementById("input_text").style.display = "block";
+    document.getElementById("input").style.display = "inline";
+    document.getElementById("input_button").style.display = "inline";
+    min = Math.floor(document.getElementById("min_input").value);
+    max = Math.floor(document.getElementById("max_input").value);
+    bomb = Math.floor((Math.random() * (max - min) ) + min);
+    document.getElementById("input_text").innerHTML = "在" + min + "~" + max + "之间输入一个数";
+   }
+   function inputFunction(){
+    input = Math.floor(document.getElementById("input").value);
+    if (input > max || input < min){
+     window.alert("值超出了区间！");
+    }
+    else{
+     if(input == bomb){
+      document.getElementById("input_text").style.color = "#990000";
+      document.getElementById("input_text").innerHTML 
+       = "你输了！炸弹是" + bomb;
+      document.getElementById("input").style.display = "none";
+      document.getElementById("input_button").style.display = "none";
+       document.getElementById(14).style.display = "block";
+     }
+     else{
+      if(input > bomb){max = input - 1;}
+      else{min = input + 1;}
+      if(max - 2 <= min){
+       document.getElementById("input_text").style.color = "#009900";
+       document.getElementById("input_text").innerHTML 
+        = "你赢了！炸弹是" + bomb;
+       document.getElementById("input").style.display = "none";
+       document.getElementById("input_button").style.display = "none";
+       document.getElementById(14).style.display = "block";
+      }
+      else{
+       document.getElementById("input_text").innerHTML =
+"在" + min + "~" + max + "之间输入一个数";
+       document.getElementById("input").value = "";
+      }
+     }
+    }
+    return;
+   }
+  </script>
+ </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+   <title>来自Letionc的数字炸弹升级版</title>
+ </head>
+ <body>
+  <h1>数字<mark>排</mark>弹</h1>
+  <hr/>
+<div id="StartPage">
+  <p id="min-light_text">最小值
+   <input type="number" id="min_input" value=1>
+  </p>
+  <p id="max-light_text">最大值
+  <input type="number" id="max_input" value=100>
+  </p>
+  <p id="bomb-light_text">炸弹数量
+  <input type="number" id="bomb_input" value=5>
+  </p>
+  <p id="hp-light_text">生命量
+  <input type="number" id="hp_input" value=5>
+  </p>
+  <button type="button" id="start_button" onclick="start();">设置完点击
+  </button>
+  <noscript>
+   <p>对不起，您由于某些原因无法进行Javascript代码以致您可能无法正常游玩，请更换设备或更新浏览器后重试！</p>
+  </noscript>
+  <a href="main.html" style="display:block">回到合集</a>
+</div>
+<div id="GamePage" style="display:none">
+  <p id="input_text" style="display:block">
+  (加载中)</p>
+  <input type="text" id="input" style="display:block" value="">
+<div id="input_button">
+   <button type="button" id="l_button" onclick="inputFunction(1);"       style="display:inline;font-size:20px;">排掉左边</button>
+   <button type="button" id="r_button" onclick="inputFunction(2);"       style="display:inline;font-size:20px;">排掉右边</button><br/>
+   <button type="button" id="m_button" onclick="inputFunction(3);"       style="display:inline;font-size:20px;">精准打击</button>
+   <button type="button" id="res_button" onclick="inputFunction(4);"       style="display:inline;font-size:20px;">重置范围</button>
+</div>
+  <a href="main.html" style="display:none" id=14>回到合集</a>
+</div>
+  <script>
+   var input = null;
+   var min = null;
+   var max = null;
+   var bomb = [];
+   var sumb = null;
+   var hp = null;
+   var findb = 0;
+   function start(){
+    document.getElementById("StartPage").style.display = "none";
+    document.getElementById("GamePage").style.display = "block";
+    min = Math.floor(document.getElementById("min_input").value);
+    max = Math.floor(document.getElementById("max_input").value);
+    sumb = Math.floor(document.getElementById("bomb_input").value);
+    hp = Math.floor(document.getElementById("hp_input").value);
+    for(;bomb.length<sumb;){
+     bomb.push(Math.floor((Math.random() * (max - min + 1)) + min));
+     let t=bomb.pop();
+     if(bomb.indexOf(t) == -1)bomb.push(t);
+    }
+    document.getElementById("input_text").innerHTML = "在" + min + "~" + max + "之间输入一个数,当前生命为" + hp + " .";
+    return;
+   }
+   
+   function inputFunction(m){
+   if(hp <= 0){
+      document.getElementById("input_text").style.color = "#990000";
+      document.getElementById("input_text").innerHTML 
+       = "你已经输了！";
+      document.getElementById("input").style.display = "none";
+      document.getElementById("input_button").style.display = "none";
+      document.getElementById(14).style.display = "block";
+      return;}
+    input = Math.floor(document.getElementById("input").value);
+    if(m == 4){min = Math.floor(document.getElementById("min_input").value);
+       max = Math.floor(document.getElementById("max_input").value);document.getElementById("input_text").innerHTML = "在" + min + "~" + max + "之间输入一个数,当前生命为" + hp + " .";
+       document.getElementById("input").value = "";return;}
+    if (input > max || input < min){
+     window.alert("值超出了区间！");
+    }
+    else{let noFind = 0; 
+    if(m == 1)min = input;
+    if(m == 2)max = input;
+    
+    for(let i = 0;i<bomb.length;i++){
+     if(input == bomb[i]){
+      if(m == 3){window.alert("你捕捉了炸弹, 炸弹为 " + bomb[i] + " .");
+      bomb.splice(i,1);
+      if(bomb.length < 1){
+       document.getElementById("input_text").style.color = "#009900";
+       document.getElementById("input_text").innerHTML 
+        = "你赢了！没有炸弹了!";
+       document.getElementById("input").style.display = "none";
+       document.getElementById("input_button").style.display = "none";
+       document.getElementById(14).style.display = "block";return;
+      }
+      min = Math.floor(document.getElementById("min_input").value);
+       max = Math.floor(document.getElementById("max_input").value);
+       document.getElementById("input_text").innerHTML =
+"在" + min + "~" + max + "之间输入一个数,当前生命为" + hp + " .";
+       document.getElementById("input").value = "";return;}
+      hp--;
+      if(hp <= 0){
+      document.getElementById("input_text").style.color = "#990000";
+      document.getElementById("input_text").innerHTML 
+       = "你输了！炸弹是 " + bomb + " 中的 " + bomb[i] +" .";
+      document.getElementById("input").style.display = "none";
+      document.getElementById("input_button").style.display = "none";
+      document.getElementById(14).style.display = "block";
+      return;}
+      window.alert("你踩到了炸弹，目前血量为 " + hp + " ,炸弹为 " + bomb[i] + " .");
+      min = Math.floor(document.getElementById("min_input").value);
+       max = Math.floor(document.getElementById("max_input").value);
+       document.getElementById("input_text").innerHTML =
+"在" + min + "~" + max + "之间输入一个数,当前生命为" + hp + " .";return;
+       document.getElementById("input").value = "";
+     }
+     if((max - min == 2)&&(max - 1 == bomb[i])){
+      window.alert("你捕捉了炸弹, 炸弹为 " + bomb[i] + " .");
+      bomb.splice(i,1);
+      if(bomb.length <= 0){
+       document.getElementById("input_text").style.color = "#009900";
+       document.getElementById("input_text").innerHTML 
+        = "你赢了！没有炸弹了!";
+       document.getElementById("input").style.display = "none";
+       document.getElementById("input_button").style.display = "none";
+       document.getElementById(14).style.display = "block";return;
+      }
+      min = Math.floor(document.getElementById("min_input").value);
+       max = Math.floor(document.getElementById("max_input").value);
+       document.getElementById("input_text").innerHTML =
+"在" + min + "~" + max + "之间输入一个数,当前生命为" + hp + " .";
+       document.getElementById("input").value = "";return;
+     }
+       if((bomb[i]<=max)&&(bomb[i]>=min))noFind++;
+    }
+    document.getElementById("input_text").innerHTML =
+"在" + min + "~" + max + "之间输入一个数,当前生命为 " + hp + " ,范围内还有 " + (noFind) + " 个炸弹.";
+       document.getElementById("input").value = "";
+    }
+    return;
+   }
+  </script>
+ </body>
+</html>
