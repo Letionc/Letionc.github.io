@@ -5,24 +5,45 @@
     <style>
       @keyframes a{
         0%{
-            transform:translateX(-100px)
+            transform:translateX(20vw);
+            opacity:0%
         }
         100%{
-            transform:translateX(100px)
+            transform:translateX(0vw);
+            opacity:100%
         }
       }
-      .text{
+      h1{
         text-align:center;
-        animation-name: a;
-        animation-duration: 2s;
-        position: absolute;
+        font-size:10vw;
+        margin:0px;
+      }
+      a{
+        text-decoration:none;
+        color:#000;
+        animation-name:a;
+        animation-duration: 1s;
         animation-fill-mode: forwards;
+        width:max-content;
+        display:block;
+      }
+      a::hover{
+        text-decoration:underline;
+        color:#00f;
+        animation-name:a;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        width:max-content;
+        display:block;
       }
     </style>
   </head>
   <body>
-    <h1 class="text">Letionc<wbr>的小站</h1>
+    <h1>Letionc<wbr>的小站</h1>
     <hr>
-    <a href="./luaeditor" class="text">迷你世界开发者编辑器 - Lua Editor</a>
+    <a href="https://github.com/Letionc/Letionc.github.io.git"><b>github</b></a>
+    <blockquote>小站在github上的源代码</blockquote>
+    <a href="./luaeditor"><b>迷你世界开发者代码编辑器 - Lua Editor</b></a>
+    <blockquote>从电脑端那边搬过来的，<wbr>可能需要一段时间加载代码</blockquote>
   </body>
 </html>
