@@ -1,17 +1,10 @@
 "use strict";
-var i=0;
-while(++i){
+for(var i=1;i<=1;i++){
   fetch(`https://letionc.github.io/luaEg/${i}.lua`)
     .then(a=>{
       return a.text();
     })
     .then(a=>{
-      nw=document.createElement('code');
-      nw.innerHTML=a;
-      nw.class="lang-lua";
-      document.getElementById('codes').appendChild(nw);
-    })
-    .catch(e=>{
-        i=-1;
+      document.getElementById("eg"+i).innerHTML=a;
     });
 };
