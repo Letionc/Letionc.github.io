@@ -8,7 +8,7 @@ while(++i){
     .then(a=>{
       document.getElementById("eg{i}").innerHTML=a;
     })
-    .catch(e==>{
+    .catch(e=>{
         break;
     });
 };
