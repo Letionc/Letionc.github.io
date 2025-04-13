@@ -9,6 +9,6 @@ while(++i){
       document.getElementById("eg{i}").innerHTML=a;
     })
     .catch(e=>{
-        break;
+        i=-1;
     });
 };
