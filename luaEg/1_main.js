@@ -4,12 +4,10 @@ function search(){
   var a=getItemNames(),
     b=getItemContents(),
     f=document.getElementById('in').value;
-  if(f==""){
-    let e=document.createElement('tbody');
+    var e=document.createElement('tbody');
     document.getElementById('table')=e;
     e.id="table";
-    return;
-  }
+  if(f=="")return;
   for(let x in a){
     if(a[x]=='')continue;
     if(!(f.includes(x+"")||f.includes(a[x])||f.includes(b[x])))continue;
