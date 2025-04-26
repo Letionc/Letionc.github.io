@@ -10,7 +10,7 @@ function search(){
   if(f=="")return;
   for(let x in a){
     if(a[x]=='')continue;
-    if(!(f.includes(x+"")||f.includes(a[x])||f.includes(b[x])))continue;
+    if(!f.includes(x+"") && !f.includes(a[x]) && !f.includes(b[x])))continue;
     var e=document.createElement('tr'),
       e1=document.createElement('td'),
       e2=document.createElement('td'),
