@@ -19,7 +19,7 @@ function search(){
     e.id="table";
   if(f=="")return;
   for(let x in a){
-    if(!(`${x[0]}`.includes(f)||x[1][.includes(f)||x[2].includes(f)))continue;
+    if(!(`${x[0]}`.includes(f)||x[1].includes(f)||x[2].includes(f)))continue;
     var e=document.createElement('tr'),
       e1=document.createElement('td'),
       e2=document.createElement('td'),
