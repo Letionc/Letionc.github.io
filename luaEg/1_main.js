@@ -3,13 +3,11 @@ getItemContents=getItemNames;
 //以后要用concat合并数组了 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
 var ItemNames1=getItemNames(),
   ItemContents1=getItemContents(),
-  a=[],
-  b=[];
+  a=[];
 setTimeout(function(){
   for(let x in ItemNames1){
     if(ItemNames1[x]!=''){
-      a.push(ItemNames1[x]);
-      b.push(ItemContents1[x]);
+      a.push([x,ItemNames1[x],ItemContents1[x]]);
     }
   }
 },0);
@@ -21,14 +19,14 @@ function search(){
     e.id="table";
   if(f=="")return;
   for(let x in a){
-    if(!(`${x}`.includes(f)||a[x].includes(f)||b[x].includes(f)))continue;
+    if(!(`${x[0]}`.includes(f)||x[1][.includes(f)||x[2].includes(f)))continue;
     var e=document.createElement('tr'),
       e1=document.createElement('td'),
       e2=document.createElement('td'),
       e3=document.createElement('td');
-    e1.innerHTML=x+"";
-    e2.innerHTML=a[x];
-    e3.innerHTML=b[x];
+    e1.innerHTML=x[0];
+    e2.innerHTML=x[1];
+    e3.innerHTML=x[2];
     document.getElementById('table').appendChild(e);
     e.appendChild(e1);
     e.appendChild(e2);
