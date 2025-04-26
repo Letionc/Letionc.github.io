@@ -33,14 +33,14 @@ a::hover{
   width:max-content;
   display:block;
 }
-flex{
+.flex{
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
   align-content: center;
 }
-flex-kid{
+.flex-kid{
   flex:1;
 }
 td,th{
