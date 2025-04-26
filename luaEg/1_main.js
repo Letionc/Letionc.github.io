@@ -5,7 +5,8 @@ function search(){
     b=getItemContents(),
     f=document.getElementById('in').value;
     var e=document.createElement('tbody');
-    document.getElementById('table')=e;
+    document.getElementById('table').remove();
+    document.getElementById('choose').appendChild(e);
     e.id="table";
   if(f=="")return;
   for(let x in a){
