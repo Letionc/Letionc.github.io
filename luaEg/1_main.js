@@ -1,16 +1,12 @@
-getItemContents=getItemNames;
-//有了物品描述后需要删掉第一行代码
+"use strict";
+var getItemContents=getItemNames;
+//有了物品描述后需要删掉第2行代码
 //以后要用concat合并数组了 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-var ItemNames1=getItemNames(),
-  ItemContents1=getItemContents(),
+//严格模式泰库拉 & 五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一(偷偷让js慢一点)
+var ItemNames=getItemNames(),
+  ItemContents=getItemContents(),
   a=[];
-setTimeout(function(){
-  for(let x in ItemNames1){
-    if(ItemNames1[x]!=''){
-      a.push([x,ItemNames1[x],ItemContents1[x]]);
-    }
-  }
-},0);
+
 function search(){
     var f=document.getElementById('in').value,
       e=document.createElement('tbody');
@@ -33,3 +29,13 @@ function search(){
     e.appendChild(e3);
   }
 }
+setTimeout(function(){
+  let l=ItemNames.length,r=l/100;
+  for(let x in ItemNames){
+    document.getElementById("proc").innerHTML="加载中，可搜索部分为："+(x/r)+"% "+x+"/"+l;
+    if(ItemNames[x]!=''){
+      a.push([x,ItemNames[x],ItemContents[x]]);
+    }
+  };
+  document.getElementById("proc").remove();
+},10);
