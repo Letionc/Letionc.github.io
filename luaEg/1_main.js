@@ -2,7 +2,7 @@
 var getItemContents=getItemNames;
 //有了物品描述后需要删掉第2行代码
 //以后要用concat合并数组了 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-//严格模式泰库拉 & 五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一五一(偷偷让js慢一点)
+//杂鱼～天天写bug还不是自己修复？
 var ItemNames=getItemNames(),
   ItemContents=getItemContents(),
   a=[];
@@ -37,6 +37,7 @@ setTimeout(function(){
       a.push([x,ItemNames[x],ItemContents[x]]);
     }
   };
-    document.getElementById("proc").innerHTML="加载完毕，可搜索物品 0~"+l;
-    document.getElementById("proc").style="color:#0f0";
+  document.getElementById("proc").innerHTML="加载完毕，可搜索物品 1~"+a[a.length][0];
+  document.getElementById("proc").style="color:#0f0";
+  ItemContents=ItemNames=undefined;
 },10);
