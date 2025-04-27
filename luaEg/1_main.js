@@ -37,5 +37,6 @@ setTimeout(function(){
       a.push([x,ItemNames[x],ItemContents[x]]);
     }
   };
-  document.getElementById("proc").remove();
+    document.getElementById("proc").innerHTML="加载完毕，可搜索部分为："+(x/r)+"% "+x+"/"+l;
+    document.getElementById("proc").style="color:#0f0";
 },10);
