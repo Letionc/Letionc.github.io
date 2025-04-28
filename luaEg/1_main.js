@@ -37,7 +37,7 @@ setTimeout(function(){
       a.push([x,ItemNames[x],ItemContents[x]]);
     }
   };
-  document.getElementById("proc").innerHTML="加载完毕，可搜索物品 1~"+a[a.length][0];
+  document.getElementById("proc").innerHTML="加载完毕，可搜索物品 1~"+a[a.length-1][0];
   document.getElementById("proc").style="color:#0f0";
   ItemContents=ItemNames=undefined;
 },10);
