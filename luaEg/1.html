@@ -11,6 +11,7 @@
       th,td{
         width:33vw;
       }
+      @media (max-width:768px)
     </style>
   </head>
   <body>
@@ -23,7 +24,12 @@
     <div class="flex">
       <p class="flex-kid" id="proc">加载中</p>
       <p class="flex-kid">搜索：<input id="in" style="width:10vw;"></p>
-      <button onclick="search();">搜索一次</button>
+      <div>
+          <button onclick="search();">搜索一次</button>
+          <button onclick="searchID();">直接搜 <b>ID</b> </button>
+          <button onclick="searchRe();"><b>正则表达式</b></button>
+      </div>
+      <p>按 Enter 普通搜索,<br>按 Tab 匹配ID<br>按 Shift-Tab 使用正则表达式</p>
       <div id="choose">
         <table style="border-collapse:collapse;">
           <thead>
@@ -36,7 +42,14 @@
         </table>
       </div>
     </div>
-    <script src="1_res0n.js"></script>
-    <script src="1_main.js"></script>
+    <script>document.getElementById("proc").innerHTML="加载 ID  列表中，不可搜索";</script>
+    <script src="1_res0.js"></script>
+    <script>document.getElementById("proc").innerHTML="加载 名字 列表中，不可搜索";</script>
+    <script src="1_res1.js"></script>
+    <script>document.getElementById("proc").innerHTML="加载 描述 列表中，不可搜索";</script>
+    <script src="1_res2.js"></script>
+    <script>document.getElementById("proc").innerHTML="加载 搜索 脚本中，不可搜索";</script>
+    <script src="1_mian.js"></script>
+    <script>document.getElementById("proc").innerHTML="加载完毕！";</script>
   </body>
 </html>
