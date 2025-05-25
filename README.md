@@ -1,3 +1,2 @@
 # Letionc.github.io
-This website is about my idea.
-If I have new idea I will upload and tell you!
+密码的周一能不能放过我一回
