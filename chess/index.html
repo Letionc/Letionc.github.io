@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易五子棋</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(15, 30px);
+            grid-template-rows: repeat(15, 30px);
+            gap: 1px;
+            background-color: #000;
+            border: 2px solid #333;
+        }
+        .cell {
+            width: 30px;
+            height: 30px;
+            background-color: #dcb35c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .piece {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+        }
+        .black {
+            background-color: #000;
+        }
+        .white {
+            background-color: #fff;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #reset-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #reset-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>简易五子棋</h1>
+    <div id="game-board"></div>
+    <div id="status">当前回合: 黑棋</div>
+    <button id="reset-btn">重新开始</button>
+
+    <script>
+        const boardSize = 15;
+        const board = Array(boardSize).fill().map(() => Array(boardSize).fill(null));
+        let currentPlayer = 'black';
+        let gameOver = false;
+
+        const gameBoard = document.getElementById('game-board');
+        const statusDisplay = document.getElementById('status');
+        const resetButton = document.getElementById('reset-btn');
+
+        // 初始化棋盘
+        function initializeBoard() {
+            gameBoard.innerHTML = '';
+            for (let i = 0; i < boardSize; i++) {
+                for (let j = 0; j < boardSize; j++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    cell.addEventListener('click', handleCellClick);
+                    gameBoard.appendChild(cell);
+                }
+            }
+        }
+
+        // 处理点击事件
+        function handleCellClick(e) {
+            if (gameOver) return;
+
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+
+            if (board[row][col] !== null) return;
+
+            board[row][col] = currentPlayer;
+            renderPiece(row, col, currentPlayer);
+
+            if (checkWin(row, col)) {
+                statusDisplay.textContent = `游戏结束! ${currentPlayer === 'black' ? '黑棋' : '白棋'}获胜!`;
+                gameOver = true;
+                return;
+            }
+
+            currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
+            statusDisplay.textContent = `当前回合: ${currentPlayer === 'black' ? '黑棋' : '白棋'}`;
+        }
+
+        // 渲染棋子
+        function renderPiece(row, col, player) {
+            const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+            const piece = document.createElement('div');
+            piece.classList.add('piece', player);
+            cell.appendChild(piece);
+        }
+
+        // 检查胜利条件
+        function checkWin(row, col) {
+            const directions = [
+                [0, 1],   // 水平
+                [1, 0],   // 垂直
+                [1, 1],   // 对角线
+                [1, -1]   // 反对角线
+            ];
+
+            for (const [dx, dy] of directions) {
+                let count = 1;
+
+                // 正向检查
+                for (let i = 1; i < 5; i++) {
+                    const newRow = row + dx * i;
+                    const newCol = col + dy * i;
+                    if (newRow < 0 || newRow >= boardSize || newCol < 0 || newCol >= boardSize || 
+                        board[newRow][newCol] !== currentPlayer) {
+                        break;
+                    }
+                    count++;
+                }
+
+                // 反向检查
+                for (let i = 1; i < 5; i++) {
+                    const newRow = row - dx * i;
+                    const newCol = col - dy * i;
+                    if (newRow < 0 || newRow >= boardSize || newCol < 0 || newCol >= boardSize || 
+                        board[newRow][newCol] !== currentPlayer) {
+                        break;
+                    }
+                    count++;
+                }
+
+                if (count >= 5) return true;
+            }
+
+            return false;
+        }
+
+        // 重置游戏
+        function resetGame() {
+            for (let i = 0; i < boardSize; i++) {
+                for (let j = 0; j < boardSize; j++) {
+                    board[i][j] = null;
+                }
+            }
+            currentPlayer = 'black';
+            gameOver = false;
+            statusDisplay.textContent = '当前回合: 黑棋';
+            initializeBoard();
+        }
+
+        resetButton.addEventListener('click', resetGame);
+
+        // 初始化游戏
+        initializeBoard();
+    </script>
+</body>
+</html>
