@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Javascript Runner</title>
+    <link href="../app.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Javascript<wbr />Runner</h1>
+    <hr>
+    <a href=".."><b>返回</b></a>
+    <blockquote>回到“其他”页面</blockquote>
+    <a href="https://github.com/Letionc/Letionc.github.io/tree/main/other/2.html"><b>github</b></a>
+    <blockquote>小站在github上的源代码</blockquote>
+    <textarea id='1' style='width:100vw;height:30vh;'></textarea>
+    <button id='3'>Run code</button>
+    <textarea id='2' style='width:100vw;height:30vh;' disabled></textarea>
+    <script>
+var a=document.getElementById('1');
+document.getElementById('3').addEventListener(function(e){
+    try{
+        this.innerText=String(eval(a.innerText));
+        this.style.color='#0f0'
+    }catch(err){
+        this.innerText=err.message;
+        this.style.color='#f00'
+    }
+}.bind(document.getElementById('2')))
+    </script>
+  </body>
+</html>
