@@ -21,6 +21,7 @@
     <h3 data-db>data loading...</h3>
     <h3 data-cf>insertConfig loading...</h3>
     <h3 data-app>Editor app loading...</h3>
+    <a href="javascript:$s('#loadPage').remove();">跳过加载页面</a>
   </div>
   <div id="file-area" class="fileOpened">
     <div class="menu-wrapper">
@@ -226,7 +227,7 @@
       <button type="button" id="toggleWikiBtn" class="btn toggle-wiki-btn">Wiki</button>
     </div>
   </div>
-  <script>window.loadOK=function(){if(this.APPEND().length==4)this.remove();}.bind($s('#loadPage'))</script>
+  <script>window.loadOK=function(){if(this.APPEND().length==5)this.remove();}.bind($s('#loadPage'))</script>
   <script src="./js/datapack_v3.js"></script>
   <script src="./js/insertCodeConfig.js"></script>
   <script src="./js/fileSys.js"></script>
