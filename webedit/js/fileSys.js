@@ -38,7 +38,7 @@
       }).follow(fileList);
     }
     get(){
-      return aceEditor.session.doc.$lines.join('\n')
+      return window.aceEditor?window.aceEditor.session.doc.$lines.join('\n'):''
       ;
     }
     saveFile(){
