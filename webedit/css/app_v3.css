@@ -3,23 +3,25 @@
 
 #file-area.fileOpened{
     position:absolute;
-    width:20%;
-    height:100%;
+    width:20vw;
+    height:100vh;
     background-color:#ccf;
 }
 #file-area:not(.fileOpened){
     position:absolute;
-    width:0%;
-    height:100%;
+    width:0;
+    height:100vh;
     display:none;
 }
 #app.fileOpened{
     transform:translateX(20vw);
-    width:80%;
-    height:100%;
+    width:80vw;
+    height:100vh;
 }
 body{
     overflow:hidden;
+    width:100vw;
+    height:100vh
 }
 .file-item-btn{
     width:100%;
