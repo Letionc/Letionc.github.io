@@ -180,7 +180,7 @@
       .style('z-index','65537')
       .listen('blur',e=>a.remove())
       .listen('keydown',e=>{
-        if(e.keyCode==9){
+        if(e.keyCode==10 || e.keyCode==13){
           fileOperations.addFile(a.elem.value);
           a.elem.blur();
         }
@@ -201,7 +201,7 @@
       .style('z-index','65537')
       .listen('blur',e=>a.remove())
       .listen('keydown',e=>{
-        if(e.keyCode==9){
+        if(e.keyCode==10 || e.keyCode==13){
           fileOperations.rnmFile(operatingFn,a.elem.value);
           a.elem.blur();
         }
