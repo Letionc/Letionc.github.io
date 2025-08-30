@@ -435,8 +435,6 @@ li,ol,ul {
 }
 #file-area:not(.fileOpened){
     position:absolute;
-    width:0;
-    height:100vh;
     display:none;
 }
 #app.fileOpened{
@@ -446,6 +444,8 @@ li,ol,ul {
 }
 body{
     overflow:hidden;
+    width: 100vw;
+    height: 100vh;
 }
 .file-item-btn{
     width:100%;
@@ -455,7 +455,7 @@ body{
     width:100%;
 }
 .file-menu-item>.menu-item-wrapper>h1{
-    background-color:#ccc;
+    background-color: #ccc;
     padding:5px;
     font-size:30px;
     height:50px;
@@ -577,4 +577,21 @@ a{
 .file-list{
     overflow-y:scroll;
     max-height:calc(100vh - 80px);
+}
+.file-list>li{
+    background-color: #ccc;
+}
+@media (max-width: 1390px) {
+    #file-area.fileOpened{
+        width:100vw;
+        height:20vh;
+    }
+    #app.fileOpened{
+        transform:translateY(20vh);
+        width:100vw;
+        height:80vh;
+    }
+    .file-list{
+        max-height:calc(20vh - 80px);
+    }
 }
