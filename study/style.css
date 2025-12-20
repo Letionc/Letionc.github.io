@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#root{
+    width: calc(80vw - 20px);
+    height: calc(80vh - 20px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid #369;
+    background-color: #123;
+    color: #ddd;
+}
+#header{
+    width: 100%;
+    height: 18px;
+    padding-block-end: 6px;
+    border-bottom: 2px solid #369;
+}
+.header{
+    height: 18px;
+    padding-block-end: 6px;
+    padding-inline: 6px;
+    display: inline-block;
+}
+.header-kid{
+    height: 18px;
+    padding-block-end: 6px;
+    padding-inline: 3px;
+    display: inline-block;
+}
+.header-right{
+    border-left: 2px solid #369;
+    float: right;
+}
+.header-left{
+    border-right: 2px solid #369;
+    float: left;
+}
+.block{
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+}
+#app{
+    height: calc(100% - 114px);
+    width: calc(100% - 12px);
+    padding: 6px;
+}
+#foot{
+    height: 80px;
+    width: 100%;
+    padding-block-start: 10px;
+    border-top: 2px solid #369;
+}
+.clickable{
+    cursor: pointer;
+}
+.header:hover{
+    background-color: #333;
+}
+.clickable:active{
+    background-color: #444;
+}
+.foot{
+    height: 70px;
+}
+button{
+    background-color: #369;
+    color: #ddd;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+    min-width: 120px;
+    margin-inline: 10px;
+}
+.foot-right{
+    float: right;
+}
+#text,#truth{
+    line-height: 35px;
+    font-size: 22px;
+    height: calc(50% - 2px);
+    overflow: initial;
+    text-wrap: wrap;
+}
+#truth{
+    color: #aaa;
+}
+hr{
+    border: 1px solid #246;
+}
+input{
+    --col: #aaa;
+    font-size: 20px;
+    width: 100px;
+    text-align: center;
+    border: none;
+    border-radius: 0;
+    color: var(--col);
+    outline: none;
+    border-bottom: 1px solid var(--col);
+    height: 21px;
+    background-color: transparent;
+    padding-block: 2px;
+    padding-inline: 10px;
+}
+.truth-txt{
+    font-size: 20px;
+    border: none;
+    border-radius: 0;
+    color: var(--col);
+    outline: none;
+    border-bottom: 1px solid var(--col);
+    height: 21px;
+    background-color: transparent;
+    padding-block: 2px;
+    padding-inline: 2px;
+}
+.truth-txt.true{
+    --col: #396;
+}
+.truth-txt.false{
+    --col: #933;
+}

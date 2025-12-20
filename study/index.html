@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>知识问答！</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./queryPlus.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div class="header-main" id="header">
+            <div class="header header-left">
+                <span class="data" id="datetime">00:00</span>
+            </div>
+            <div class="header header-left">
+                <span class="data">答题系统 v1.0.0 题11</span>
+            </div>
+            <div class="header header-right clickable" id="exitbtn">
+                <span>返回 / 刷新</span>
+                <span class="block">↳</span>
+            </div>
+            <div class="header header-right" id="rightion">
+                <span class="header-kid">
+                    <span class="data">0.00%</span>
+                </span>
+                <span class="header-kid">
+                    <span class="block">✓</span>
+                    <span class="data">0</span>
+                </span>
+                <span class="header-kid">
+                    <span class="block">✕</span>
+                    <span class="data">0</span>
+                </span>
+            </div>
+        </div>
+        <div class="app-main" id="app">
+            <p id="text">
+                未加载完毕，请不要点击提交。<input type="text"><br>
+                &emsp;&emsp;Loading doesn't end, do not submit.
+            </p>
+            <hr>
+            <p id="truth">
+                你好, 我是答案.
+            </p>
+        </div>
+        <div class="foot-main" id="foot">
+            <button class="foot foot-right clickable" id="submitbtn">提交</button>
+            <button class="foot foot-right clickable" id="nextbtn">下一题</button>
+        </div>
+    </div>
+    <script src="./resource.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
