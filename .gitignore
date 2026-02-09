@@ -1,0 +1,10 @@
+.git/
+.zed/
+.vscode/
+
+# ignored files
+*.tmp
+*.log
+*.log.*
+*.cache
+*.lock

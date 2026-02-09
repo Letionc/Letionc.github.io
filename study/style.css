@@ -134,3 +134,9 @@ input{
 .truth-txt.false{
     --col: #933;
 }
+.wronged-tag{
+    color: #f55;
+}
+.righted-tag{
+    color: #5f5;
+}
