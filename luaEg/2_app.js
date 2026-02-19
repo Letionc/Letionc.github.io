@@ -181,6 +181,7 @@ elemT.elem.addEventListener("input", (e) => {
 elemY.elem.addEventListener("input", (e) => {
     setElemT_fromY();
     setElemX_fromT();
+    isTInputed = false;
 }); // changeT_fromY
 elemY_G.elem.addEventListener("input", (e) => {
     gravity = +elemY_G.value;
@@ -192,6 +193,7 @@ elemY_G.elem.addEventListener("input", (e) => {
 }); // getT <-> getY  (gravity)
 
 elemX.elem.addEventListener("input", (e) => {
+    isTInputed = false;
     setElemT_fromX();
     setElemY_fromT();
 }); // changeT_fromX
@@ -204,7 +206,7 @@ elemX_V.elem.addEventListener("input", (e) => {
     }
 }); // getT <-> getY  (gravity)
 elemX_B.elem.addEventListener("click", (e) => {
-    isBeg = (elemX_B.checked);
+    isBeg = (elemX_B.elem.checked);
     if (isTInputed) setElemX_fromT();
     else {
         setElemT_fromX();
@@ -212,7 +214,7 @@ elemX_B.elem.addEventListener("click", (e) => {
     }
 }); // changeXB
 elemX_E.elem.addEventListener("click", (e) => {
-    isEnd = (elemX_E.checked);
+    isEnd = (elemX_E.elem.checked);
     if (isTInputed) setElemX_fromT();
     else {
         setElemT_fromX();
@@ -220,7 +222,7 @@ elemX_E.elem.addEventListener("click", (e) => {
     }
 }); // changeXE
 elemX_R.elem.addEventListener("click", (e) => {
-    isRun = (elemX_R.checked);
+    isRun = (elemX_R.elem.checked);
     if (isTInputed) setElemX_fromT();
     else {
         setElemT_fromX();
