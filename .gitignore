@@ -8,3 +8,6 @@
 *.log.*
 *.cache
 *.lock
+
+# unusable files
+luaEg/2_cv.js
