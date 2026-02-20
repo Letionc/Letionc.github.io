@@ -1,2 +1,2 @@
 # Letionc.github.io
-我没版权
+我不买版权，付不起
