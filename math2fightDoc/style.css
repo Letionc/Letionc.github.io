@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, "Microsoft Yahei", sans-serif;
+}
+body{
+    width: 100dvw;
+    height: 100dvh;
+    font-size: 20px;
+}
+p, h1, h2,  h3, h4, h5, h6, 
+blockquote, pre, ul, table{
+    margin-block: 15px;
+}
+h1{
+    font-size: 50px;
+    margin-block: 30px;
+}
+h2{
+    font-size: 40px;
+    margin-block: 25px;
+}
+h3{
+    font-size: 30px;
+    margin-block: 20px;
+}
+table,tbody,thead,th,td{
+    border: 1px solid #000;
+    border-collapse: collapse;
+    
+}
+th{
+    font-weight: bold;
+}
+td,th{
+    padding: 10px;
+}
+ul{
+    list-style: none;
+    padding-left: 27px;
+    border-left: 3px solid #0002;
+}
+blockquote{
+    border-left: 6px solid #0002;
+    width: calc(100% - 26px);
+    padding: 10px;
+    background-color: #0001;
+    color: #0008;
+}
+#header{
+    width: 100%;
+    height: 75px;
+    background-color: #5af;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block-end: 30px;
+    box-shadow: 0 0 10px 10px #0000003f; /* i tried "outset" and now i know it is not required */
+
+}
+#header>.wrapper{
+    width: 80%;
+    margin-inline: 10%;
+    height: 100%;
+    display: block;
+}
+#header>.wrapper>a{
+    font-size: 25px;
+    font-weight: bold;
+    min-width: 100px;
+    height: calc(100% - 20px);
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    display: inline-flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+}
+#header>.wrapper>.left{
+    float: left;
+}
+#header>.wrapper>.right{
+    float: right;
+}
+#bottom{
+    width: 80%;
+    margin-inline: 10%;
+    height: calc(100% - 105px);
+    display: block;
+    text-wrap-mode: wrap;
+}
+#toggler{
+    float: left;
+    width: 26%;
+    padding-inline: 2%;
+    height: 100%;
+    overflow-y: scroll;
+}
+#toggler>a{
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    display: block;
+}
+#toggler>a:hover{
+    color: #5af;
+}
+#content{
+    float: right;
+    width: 66%;
+    padding-inline: 2%;
+    height: 100%;
+    overflow-y: scroll;
+}
