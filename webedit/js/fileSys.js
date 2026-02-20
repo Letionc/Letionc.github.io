@@ -1,5 +1,5 @@
 //File System
-!(function (noRUN) {
+!function (noRUN) {
     if (noRUN) return;
     var body = $s("body");
     var filesSpace = new IndexedDBUtils("files", 2);
@@ -9,7 +9,7 @@
     var loading = $s("#loadPage");
     var fnInput = $s("#fn");
     var updated = $s("#updated");
-    var operatingFn = 0;
+    window.operatingFn = 0;
     var fileArray = {};
     var sessionAreaText = "";
     var LS = localStorage;
@@ -21,7 +21,87 @@
         LS.removeItem("_" + operatingFn);
     });
     document.title = `${ttl} session`;
-    window.fileOperations = new (class {
+    class fileOperationsBaseClass{
+        /**
+         * 调用浏览器让用户从电脑/手机选择文件，并读取文件内容
+         * @param {string[]} [acceptTypes] - 可选，指定可选择的文件类型，如 ['text/*', 'application/json']
+         * @return {Promise<string | Error>} 文件内容字符串，若失败则返回 Error 对象
+         */
+        openLocalFile(acceptTypes = ["*/*"]) {
+            return new Promise((resolve) => {
+                try {
+                    const fileInput = document.createElement("input");
+                    fileInput.type = "file";
+                    fileInput.style.display = "none";
+                    fileInput.accept = acceptTypes.join(",");
+                    document.body.appendChild(fileInput);
+
+                    fileInput.addEventListener("change", async (e) => {
+                        const file = e.target.files?.[0];
+                        document.body.removeChild(fileInput);
+
+                        if (!file) {
+                            resolve(new Error("未选择任何文件"));
+                            return;
+                        }
+
+                        try {
+                            const reader = new FileReader();
+                            reader.onload = () => resolve(reader.result);
+                            reader.onerror = () =>
+                                resolve(
+                                    new Error(
+                                        `读取文件失败: ${reader.error?.message}`,
+                                    ),
+                                );
+                            reader.readAsText(file);
+                        } catch (err) {
+                            resolve(new Error(`读取文件异常: ${err.message}`));
+                        }
+                    });
+
+                    fileInput.click();
+                } catch (err) {
+                    resolve(new Error(`打开文件选择器失败: ${err.message}`));
+                }
+            });
+        }
+        /**
+         * 调用浏览器让用户将内容保存为文件到电脑/手机
+         * @param {string} content - 要保存的文件内容
+         * @param {string} fileName - 建议的文件名（如 'data.txt'）
+         * @param {string} [mimeType='text/plain'] - 文件MIME类型
+         * @return {Promise<undefined | Error>} 成功返回undefined，失败返回Error对象
+         */
+        saveLocalFile(content, fileName, mimeType = "text/plain") {
+            return new Promise((resolve) => {
+                try {
+                    if (!content || !fileName) {
+                        resolve(new Error("内容和文件名不能为空"));
+                        return;
+                    }
+
+                    const blob = new Blob([content], { type: mimeType });
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.download = fileName;
+                    downloadLink.style.display = "none";
+                    document.body.appendChild(downloadLink);
+
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    URL.revokeObjectURL(downloadLink.href);
+
+                    resolve();
+                } catch (err) {
+                    resolve(new Error(`保存文件失败: ${err.message}`));
+                }
+            });
+        }
+        replaceSessionTxt(content = "") {
+            aceEditor.selectAll();
+            aceEditor.insert(content);
+        }
         add(fn) {
             return $c("li")
                 .intext(fn)
@@ -227,16 +307,16 @@
                     }),
                 )
                 .THEN(
-                    (a) => autoClick && setTimeout((e) => e.click(), 3000, a),
+                    (a) => autoClick && setTimeout((e) => e.click(), 4321, a),
                 );
         }
-    })();
+    }
+    window.fileOperations = new fileOperationsBaseClass();
     $s(".file-list>li[data-sp]").listen("click", function (e) {
         fileOperations.saveFile();
         LS.removeItem("_" + operatingFn);
         document.title = `${ttl} session`;
-        aceEditor.selectAll();
-        aceEditor.insert(sessionAreaText);
+        fileOperations.replaceSessionTxt(sessionAreaText);
         operatingFn = 0;
         fnInput.attr("value", "session " + ttl);
     });
@@ -341,4 +421,4 @@
                 });
             $s("#loadPage>h3[data-db]").remove();
         });
-})(false);
+}(false);

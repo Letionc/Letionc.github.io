@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loading...</title>
   <link href="./css/app.css" rel="stylesheet">
+  <link href="./css/app_file.css" rel="stylesheet">
   <script src="./js/IndexedDB.js"></script>
   <script src="./js/queryPlus.js"></script>
 </head>
@@ -20,7 +21,7 @@
       <h3 data-cf>insertConfig loading...</h3>
       <h3 data-db>data loading...</h3>
       <h3 data-app>Editor app loading...</h3>
-      <a href="javascript:$s('#loadPage').remove();">跳过加载页面</a>
+      <a href="javascript:$s('#loadPage').remove();" autofocus>跳过加载页面</a>
   </div>
   <div id="file-area" class="fileOpened">
     <div class="menu-wrapper">
@@ -28,32 +29,24 @@
         <li class="menu-item file-menu-item">
           <div class="menu-item-wrapper">
             <h1>文件系统 <a href="./index_v3.html">V1</a></h1>
-            <a href="javascript:;" id="fileCloseBtn">
-              <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" style="right:10px;top:13px;position:absolute;">
-                <path d="M0 3L3 0L10 7L17 0L20 3L13 10L20 17L17 20L10 13L3 20L0 17L7 10Z" fill="gray" />
-              </svg>
+            <a href="javascript:;" id="fileCloseBtn" class="file-link-btn" style="right:10px;top:8px;position:absolute;border:none;">
+                ×
             </a>
             
-            <div style="width:100%;height:30px;background-color:#fcf;padding-inline-start:5px;">
-              <a href="javascript:;" id="fileAddBtn">
-                <svg width="25" height="20" xmlns="http://www.w3.org/2000/svg" style="scale:1.25;transform:translateY(5px)">
-                  <path d="M1 1 L12 1 L15 4 L15 19 L1 19 L1 1" fill="gray" stroke="#fff" stroke-width="1" />
-                  <path d="M11 5l3-0l0-3l3-0l0 3l3-0l0 3l-3-0l0 3l-3-0l0-3l-3-0l0-3l3-0l0-3" fill="gray" stroke="#fff" stroke-width="1" />
-                </svg>
+            <div style="width:100%;height:35px;background-color:#fcf;padding-inline-start:5px;">
+              <a href="javascript:;" id="fileAddBtn" class="file-link-btn">
+                  +
               </a>
-              <a href="javascript:;" id="fileDelBtn">
-                <svg width="25" height="20" xmlns="http://www.w3.org/2000/svg" style="scale:1.25;transform:translateY(5px)">
-                  <path d="M3 4L3 2L10 2L10 0L15 0L15 2L22 2L22 4Z" fill="gray" stroke="#fff" stroke-width="1" />
-                  <path d="M5 5L7 19L18 19L20 5Z" fill="gray" stroke="#fff" stroke-width="1" />
-                </svg>
+              <a href="javascript:;" id="fileDelBtn" class="file-link-btn">
+                  -
               </a>
-              <a href="javascript:;" id="fileRnmBtn">
-                改名
+              <a href="javascript:;" id="fileRnmBtn" class="file-link-btn">
+                  名
               </a>
             </div>
             <ul class="file-list">
               <li data-sp>临时 / Session Area</li>
-              <hr style="height:5px;" />
+              <hr style="height:5px;background-color: #ccf;" />
             </ul>
           </div>
         </li>
@@ -165,7 +158,7 @@
                 <li class="idlib-item" data-type="4">特效</li>
                 <li class="idlib-item" data-type="5">音效</li>
                 <li class="idlib-item" data-type="6">状态</li>
-                <li class="idlib-item" data-type="7">镶嵌<wbr>(弃用)</li>
+                <li class="idlib-item" data-type="7"><del>&ensp;镶嵌&ensp;</del></li>
                 <li class="idlib-item" data-type="8">动作</li>
                 <li class="idlib-item" data-type="9">商品</li>
                 <li class="idlib-item" data-type="10">模型</li>
@@ -199,17 +192,17 @@
         <span>ID搜索工具</span>
         <i class="close-icon" id="searchIdCloseIcon"></i>
       </div>
-      <div class="search-id-inner">
+       <div class="search-id-inner" style="display: none;">
         <div id="searchIdInpWrapper" class="search-id-inpwrapper">
           <input type="text" class="search-id-input" placeholder="请输入方块 ID 或 名称" id="searchIdInput">
           <div class="history-list" id="searchIdHistoryList"></div>
         </div>
         <div id="searchIdListContainer" class="search-id-container">
-          <!-- id 列表 -->
           <dl id="searchIdList">
           </dl>
         </div>
-      </div>
+      </div> 
+      <iframe src="../luaEg/1_iframe.html" style="width:100%;height:100%;"></iframe>
     </div>
     <!--wiki模块-->
     <div id="devWiki" class="dev-wiki">
