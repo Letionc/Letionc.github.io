@@ -27,7 +27,8 @@ function getProblems(type = "") {
 }
 /**@param {Date} d @returns {string}*/
 function translateDate(d) {
-    return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+    // return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+    return `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 }
 /**
  * randint in [0,n) .

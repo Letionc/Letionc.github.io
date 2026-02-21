@@ -72,8 +72,8 @@ function searchID(){
   }
 }
 document.getElementById('in').addEventListener('keydown',e=>{
-  var i=e.which?e.which:e.KeyCode;
-  if(i==13)search();
-  if(i==9 && !e.altKey && !e.shiftKey){e.preventDefault();searchID();}
-  if(i==9 && !e.altKey && e.shiftKey){e.preventDefault();searchRe();}
+  var i=e.KeyCode;
+  if(i==13 && !e.altKey && !e.shiftKey)e.preventDefault(),search();
+  if(i==13 && !e.altKey && e.shiftKey)e.preventDefault(),searchID();
+  if(i==9 && !e.altKey && e.shiftKey)e.preventDefault(),searchRe();
 });

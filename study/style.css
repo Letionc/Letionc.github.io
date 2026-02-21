@@ -16,41 +16,44 @@ body{
 #root{
     width: calc(80vw - 20px);
     height: calc(80vh - 20px);
-    border-radius: 20px;
-    padding: 20px;
-    border: 2px solid #369;
+    border-radius: 10px;
+    padding: 15px;
+    border: 2px solid #246;
     background-color: #123;
     color: #ddd;
 }
 #header{
     width: 100%;
     height: 18px;
-    padding-block-end: 6px;
-    border-bottom: 2px solid #369;
+    padding-block-end: 8px;
+    border-bottom: 2px solid #246;
 }
 .header{
     height: 18px;
-    padding-block-end: 6px;
-    padding-inline: 6px;
+    padding-block-end: 8px;
+    padding-inline: 8px;
     display: inline-block;
 }
 .header-kid{
     height: 18px;
     padding-block-end: 6px;
-    padding-inline: 3px;
+    padding-inline: 1px;
     display: inline-block;
 }
 .header-right{
-    border-left: 2px solid #369;
+    border-left: 5px solid #2460;
     float: right;
 }
 .header-left{
-    border-right: 2px solid #369;
+    border-right: 5px solid #2460;
     float: left;
+}
+.data{
+    font-size: 16px;
 }
 .block{
     height: 18px;
-    width: 18px;
+    width: 15px;
     display: inline-block;
 }
 #app{
@@ -62,7 +65,7 @@ body{
     height: 80px;
     width: 100%;
     padding-block-start: 10px;
-    border-top: 2px solid #369;
+    border-top: 2px solid #246;
 }
 .clickable{
     cursor: pointer;
@@ -77,13 +80,17 @@ body{
     height: 70px;
 }
 button{
-    background-color: #369;
+    background-color: #123;
     color: #ddd;
-    border: none;
+    border: 2px solid #246;
     font-size: 20px;
     border-radius: 10px;
     min-width: 120px;
     margin-inline: 10px;
+}
+button:focus{
+    outline: none;
+    border: 2px solid #48c;
 }
 .foot-right{
     float: right;
@@ -115,6 +122,9 @@ input{
     background-color: transparent;
     padding-block: 2px;
     padding-inline: 10px;
+}
+input:not(:disabled):focus{
+    border-bottom: 1px solid #48c;
 }
 .truth-txt{
     font-size: 20px;
