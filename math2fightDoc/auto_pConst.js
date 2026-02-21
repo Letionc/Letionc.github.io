@@ -11,7 +11,7 @@ document.getElementById("toggler").innerHTML =
     <ul>
         <li class="kToggler"><a href="./index_pConstConst.html#txt-Fall">下落</a></li>
         <li class="kToggler"><a href="./index_pConstConst.html#txt-Forward">走路和奔跑</a></li>
-        <li class="kToggler"><a href="./index_pConstConst.html#txt-Tick">游戏刻</a></li>
+        <li class="kToggler"><a href="./index_pConstConst.html#txt-Jump">跳跃</a></li>
     </ul>
 `
 ;

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>数学与战斗 文档 · 组合与方法</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="header">
+        <div class="wrapper">
+            <a class="left" href="./index.html"><span>首页</span></a>
+            <a class="left" href="./index_pConst.html"><span>概念与常量</span></a>
+            <a class="left" href="./index_pMethod.html"><span>组合与方法</span></a>
+            <a class="right" href="../index.html"><span>站主页</span></a>
+        </div>
+    </div>
+    <div id="bottom">
+        <div id="toggler">
+            
+        </div>
+        <div id="content">
+            <h1 id="txt-Main">测距</h1>
+            
+            <h2 id="txt-Block">块</h2>
+
+            <p>这是测量距离最简单的方法，用 <b>眼睛</b> 或 <b>坐标差</b> 进行垂直测量。</p>
+            <p>这也太麻烦了，但也精准。</p>
+            <p>如果你赶时间，不妨看看区块测量法？</p>
+            
+            <h2 id="txt-UnitBlock">区块</h2>
+
+            <p>这是利用渲染区块来测量距离的方法。</p>
+            <p>不精准，但可以判断大致距离。</p>
+            <img src="./img/pMethodRuler_UnitBlock.png" alt="近 中 远 更远 最远">
+            <p>以下是对应的渲染区块的直径表格：</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>近</th>
+                        <th>中</th>
+                        <th>远</th>
+                        <th>更远</th>
+                        <th>最远</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>区块直径 ( 两侧 , 中间 )</td>
+                        <td>5</td>
+                        <td>9</td>
+                        <td>17</td>
+                        <td>21</td>
+                        <td>33</td>
+                    </tr>
+                    <tr>
+                        <td>区块半径 ( 一侧 )</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>8</td>
+                        <td>10</td>
+                        <td>16</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2 id="txt-Slanted">斜线</h2>
+
+            <p>用勾股定理吧，a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup> .</p>
+            
+        </div>
+    </div>
+    <script src="./auto_pMethod.js"></script>
+</body>
+
+</html>
