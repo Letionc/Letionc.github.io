@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>数学与战斗 文档 · 概念与常量</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="header">
+        <div class="wrapper">
+            <a class="left" href="./index.html"><span>首页</span></a>
+            <a class="left" href="./index_pConst.html"><span>概念与常量</span></a>
+            <a class="left" href="./index_pMethod.html"><span>组合与方法</span></a>
+            <a class="right" href="../index.html"><span>站主页</span></a>
+        </div>
+    </div>
+    <div id="bottom">
+        <div id="toggler">
+            
+        </div>
+        <div id="content">
+
+            <h1 id="txt-Fall">下落</h1>
+
+            <p>在迷你世界中，下落速度最快约是 <b>1.94 B / Tick</b>。</p>
+            <p>具体计算可在 <a href="../luaEg/2_index.html">计算</a> 中尝试。</p>
+            <p>将每 Tick 的下落速度和 前缀和 结合，可以得到下落总距离。</p>
+            <blockquote>记得乘上重力！默认为 1.0</blockquote>
+            
+            <h1 id="txt-Forward">走路和奔跑</h1>
+            
+            <p>在迷你世界中，不奔跑，前行速度最快约是 <b>0.21 B / Tick</b>。( 奔跑速度约是普通速度的 1.32 倍 )</p>
+            <p>具体计算可在 <a href="../luaEg/2_index.html">计算</a> 中尝试。</p>
+            <p>将每 Tick 的前行速度和 前缀和 结合，可以得到前行总距离。</p>
+            <blockquote>记得带上移动速度！玩家默认为 10 ，那么速度倍数就是&emsp;新的移动速度 ÷ 10&emsp;。</blockquote>
+            <blockquote>生物默认为 5.5 ，那么速度倍数就是&emsp;0.55&emsp;。</blockquote>
+            
+            <h1 id="txt-Jump">跳跃</h1>
+            
+            <p>在迷你世界中，跳跃速度从 <b>0.4 B / Tick</b>起步。( 即 跳跃力÷100 )</p>
+            <p>具体计算可在 <a href="../luaEg/2_index.html">计算</a> 中尝试。</p>
+            <p>将每 Tick 的前行速度和 前缀和 结合，可以得到前行总距离。</p>
+            <blockquote>跳跃力记牢了！玩家默认为 40</blockquote>
+
+        </div>
+    </div>
+    <script src="./auto_pConst.js"></script>
+</body>
+
+</html>

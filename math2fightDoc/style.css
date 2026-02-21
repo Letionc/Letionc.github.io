@@ -47,6 +47,31 @@ blockquote{
     background-color: #0001;
     color: #0008;
 }
+pre{
+    background-color: #0008;
+    color: #fff;
+    padding: 10px;
+    overflow-x: auto;
+    font-family: "Consolas", "Courier New", monospace;
+}
+img{
+    max-width: 100%;
+}
+small{
+    font-size: 50%;
+    color: #0008;
+}
+.rightarrow{
+    --h: 10px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: var(--h) solid transparent;
+    border-bottom: var(--h) solid transparent;
+    border-right: var(--h) solid transparent;
+    border-left: var(--h) solid #0008;
+    margin: 5px;
+}
 #header{
     width: 100%;
     height: 75px;
@@ -98,14 +123,15 @@ blockquote{
     height: 100%;
     overflow-y: scroll;
 }
-#toggler>a{
+#toggler>a, .kToggler>a{
     font-size: 25px;
     font-weight: bold;
     text-decoration: none;
     color: #000;
-    display: block;
+    display: flex;
+    align-items: center;
 }
-#toggler>a:hover{
+#toggler>a:hover, .kToggler>a:hover{
     color: #5af;
 }
 #content{

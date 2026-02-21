@@ -30098,6 +30098,14 @@
                                     regex: "(?:(?:(?:[1-9]\\d*)|(?:0))|(?:0[xX][\\dA-Fa-f]+))\\b",
                                 },
                                 {
+                                    token: "support.class",
+                                    regex: "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\:|\\.|\\s*=\\s*{)",
+                                },
+                                {
+                                    token: "entity.name.function",
+                                    regex: "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()",
+                                },
+                                {
                                     token: e,
                                     regex: "[a-zA-Z_$][a-zA-Z0-9_$]*\\b",
                                 },
