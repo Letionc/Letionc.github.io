@@ -30099,7 +30099,7 @@
                                 },
                                 {
                                     token: "support.class",
-                                    regex: "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\:|\\.|\\s*=\\s*{)",
+                                    regex: "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\:|\\.[^\\.]|\\[|=\\s*{)",
                                 },
                                 {
                                     token: "entity.name.function",

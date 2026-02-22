@@ -347,17 +347,20 @@ var isRun = false;
 var isBeg = true;
 var isEnd = true;
 
-function getYD_fromT(t) {
-    if (t < 0) {
-        return -getYD_fromT(-t);
-    }
-    if (t >= maxT_fromY) {
-        return (
-            maxY
-        );
-    }
-    return y_arr[Math.floor(t * 20)];
-}
+// function getYD_fromT(t) {
+//     if (t < 0) {
+//         return -getYD_fromT(-t);
+//     }
+//     if (t >= maxT_fromY) {
+//         return (
+//             maxY
+//         );
+//     }
+//     return y_arr[Math.floor(t * 20)];
+// }
+// function getYD_fromT(t) {
+//     return 1.94 * gravity * (Math.pow(2.32, -t) - 1);
+// }
 function getY_fromT(t) {
     if (t < 0) {
         return -getY_fromT(-t);
@@ -416,24 +419,32 @@ function getT_fromY(y) {
     }
     return l / 20;
 }
-function getT_fromYD(y) {
-    if (y < 0) {
-        return -getT_fromYD(-y);
+// function getT_fromYD(y) {
+//     if (y < 0) {
+//         return -getT_fromYD(-y);
+//     }
+//     if (y > maxY) {
+//         return NaN;
+//     }
+//     var l = 0,
+//         r = y_arrLen + 1;
+//     while (l < r) {
+//         let mid = (l + r) >> 1;
+//         if (y < y_arr[mid]) {
+//             r = mid;
+//         } else {
+//             l = mid + 1;
+//         }
+//     }
+//     return l / 20;
+// }
+function getT_fromV0(v0) {
+    if(v0 < -1.94){
+        // this should use another function!
+        // y = -9.03184 * 2.32^{-t} - 1.94
+        return (2*Math.log(-(v0+1.94)/9.03184)/Math.log(2.32))
     }
-    if (y > maxY) {
-        return NaN;
-    }
-    var l = 0,
-        r = y_arrLen + 1;
-    while (l < r) {
-        let mid = (l + r) >> 1;
-        if (y < y_arr[mid]) {
-            r = mid;
-        } else {
-            l = mid + 1;
-        }
-    }
-    return l / 20;
+    return (2*Math.log(v0/1.94+1)/Math.log(2.32));
 }
 function getT_fromX(x) {
     if (x < 0) {
@@ -485,7 +496,7 @@ function getT_fromX(x) {
 const elemT = $s("#t");
 // const elemT_T = $s("#t_t");
 const elemY = $s("#y");
-const elemY_D = $s("#y_d");
+const elemY_V0 = $s("#y_v0");
 const elemY_G = $s("#y_g");
 const elemX = $s("#x");
 const elemX_V = $s("#x_v");
@@ -503,32 +514,24 @@ var setElemX_fromT = (t = +elemT.value) =>
 var setElemY_fromT = (t = +elemT.value) =>
     (elemY.value = (getY_fromT(t) * (gravity || 1)).toFixed(2));
 
-var setElemYD_fromT = (t = +elemT.value) =>
-    (elemY_D.value = (getYD_fromT(t) * (gravity || 1)).toFixed(2));
-
 var setElemT_fromX = (x = +elemX.value) =>
 (elemT.value = getT_fromX(
     x / (isRun ? const_X_R : 1) / (speed || 1),
 ).toFixed(2));
 
 var setElemT_fromY = (y = +elemY.value) =>
-    (elemT.value = getT_fromY(y / (gravity || 1)).toFixed(2));
-
-var setElemT_fromYD = (y = +elemY_D.value) =>
-    (elemT.value = getT_fromYD(y / (gravity || 1)).toFixed(2));
+    (elemT.value = (getT_fromY(y / (gravity || 1))).toFixed(2));
 
 elemT.elem.addEventListener("input", (e) => {
     isTInputed = true;
     setElemY_fromT();
     setElemX_fromT();
-    setElemYD_fromT();
 }); // changeALL_fromT
 
 elemY.elem.addEventListener("input", (e) => {
     isTInputed = false;
     setElemT_fromY();
     setElemX_fromT();
-    setElemYD_fromT();
 }); // changeT_fromY
 elemY_D.elem.addEventListener("input", (e) => {
     isTInputed = false;
@@ -542,7 +545,6 @@ elemY_G.elem.addEventListener("input", (e) => {
     else {
         setElemT_fromY();
         setElemX_fromT();
-        setElemYD_fromT();
     }
 }); // getT <-> getY  (gravity)
 
@@ -550,7 +552,6 @@ elemX.elem.addEventListener("input", (e) => {
     isTInputed = false;
     setElemT_fromX();
     setElemY_fromT();
-    setElemYD_fromT();
 }); // changeT_fromX
 elemX_V.elem.addEventListener("input", (e) => {
     speed = +elemX_V.value;
@@ -558,7 +559,6 @@ elemX_V.elem.addEventListener("input", (e) => {
     else {
         setElemT_fromX();
         setElemY_fromT();
-        setElemYD_fromT();
     }
 }); // getT <-> getY  (gravity)
 elemX_B.elem.addEventListener("click", (e) => {
@@ -567,7 +567,6 @@ elemX_B.elem.addEventListener("click", (e) => {
     else {
         setElemT_fromX();
         setElemY_fromT();
-        setElemYD_fromT();
     }
 }); // changeXB
 elemX_E.elem.addEventListener("click", (e) => {
@@ -576,7 +575,6 @@ elemX_E.elem.addEventListener("click", (e) => {
     else {
         setElemT_fromX();
         setElemY_fromT();
-        setElemYD_fromT();
     }
 }); // changeXE
 elemX_R.elem.addEventListener("click", (e) => {
@@ -585,6 +583,5 @@ elemX_R.elem.addEventListener("click", (e) => {
     else {
         setElemT_fromX();
         setElemY_fromT();
-        setElemYD_fromT();
     }
 }); // changeXR
