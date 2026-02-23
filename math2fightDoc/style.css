@@ -53,6 +53,7 @@ pre{
     padding: 10px;
     overflow-x: auto;
     font-family: "Consolas", "Courier New", monospace;
+    display: block;
 }
 img{
     max-width: 100%;

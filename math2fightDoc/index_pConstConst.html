@@ -30,12 +30,12 @@
             <p>具体计算可在 <a href="../luaEg/2_index.html">计算</a> 中尝试。</p>
             <p>将每 Tick 的下落速度和 前缀和 结合，可以得到下落总距离。</p>
             <blockquote>记得乘上重力！默认为 1.0</blockquote>
-            <p>以下为近似函数图：y = 1.94 g ( 2.32 ^ {-t} - 1 ) <b>( y > -1.94)</b></p>
-            <p>y为下落速度，g为重力，t为时间(sec)：y = 1.94 g ( 2.32 <sup>-t</sup> - 1 )</p>
+            <p>以下为自由下落近似函数与图：y = 1.94 g ( 2.32 ^ {-t} - 1 )</p>
+            <p>y为下落速度(b/t)，g为重力，t为时间(sec)：y = 1.94 g ( 2.32 <sup>-t</sup> - 1 )</p>
             <img src="./img/pConstConst_Fall.png" alt="函数图">
-            <p>以下为近似函数图：y = -9.03184 * 2.32^{-t} - 1.94 <b>( y < -1.94)</b></p>
-            <p>y为下落速度，g为重力，t为时间(sec)：y = 1.94 g ( 2.32 <sup>-t</sup> - 1 )</p>
-            <img src="./img/pConstConst_Fall2.png" alt="函数图">
+            <p>以下为带初速度近似函数与图：y = (v_0 + 1.94g) 2.2142174^{-t} - 1.94g</p>
+            <p>y为下落速度(b/t)，g为重力，v<sub>0</sub>为初速度，t为时间(sec)：y = (v<sub>0</sub> + 1.94g) 2.2142174<sup>-t</sup> - 1.94g</p>
+            <img src="./img/pConstConst_Fall3.png" alt="函数图">
             
             <h2 id="txt-Forward">走路和奔跑</h2>
             
@@ -47,10 +47,12 @@
             
             <h2 id="txt-Jump">跳跃</h2>
             
-            <p>在迷你世界中，跳跃速度从 <b>0.4 B / Tick</b>起步。( 即 跳跃力÷100 )</p>
-            <!-- <p>具体计算可在 <a href="../luaEg/2_index.html">计算</a> 中尝试。</p> -->
-            <p><del>该部分我暂未研究透彻，请自行测试。</del></p>
-            <p>根据 <a href="#txt-Fall">下落</a> 所展示公式可反推出：y = 1.94 g ( 2.32 ^ {-t} - 1 )</p>
+            <p>在迷你世界中，跳跃速度一般从 <b>0.4 B / Tick</b>起步。( 即 跳跃力÷100 , <b>不一般是在跳跃力为其他的时候</b> )</p>
+            <p>具体计算可在 <a href="../luaEg/2_index.html">计算</a> 中尝试。</p>
+            <p>该部分我暂未研究透彻，请自行测试。</p>
+            <p>根据 <a href="#txt-Fall">下落</a> 所展示公式可反推出：t = - log <sub>2.2142174</sub> ( (y + 1.94g)/(v<sub>0</sub> + 1.94g) )</p>
+            <p>即：</p>
+            <pre>ln( (v0 + 1.94 * g) / (y + 1.94 * g) ) / ln(2.2142174)</pre>
             <blockquote>跳跃力记牢了！玩家默认为 40</blockquote>
 
         </div>

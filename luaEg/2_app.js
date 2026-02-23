@@ -347,6 +347,8 @@ var isRun = false;
 var isBeg = true;
 var isEnd = true;
 
+var ln = Math.log;
+
 // function getYD_fromT(t) {
 //     if (t < 0) {
 //         return -getYD_fromT(-t);
@@ -439,12 +441,8 @@ function getT_fromY(y) {
 //     return l / 20;
 // }
 function getT_fromV0(v0) {
-    if(v0 < -1.94){
-        // this should use another function!
-        // y = -9.03184 * 2.32^{-t} - 1.94
-        return (2*Math.log(-(v0+1.94)/9.03184)/Math.log(2.32))
-    }
-    return (2*Math.log(v0/1.94+1)/Math.log(2.32));
+    // time is new. we dont use array hahaha
+    return ln( v0 / gravity / 1.94 + 1) / ln(2.2142174);
 }
 function getT_fromX(x) {
     if (x < 0) {
