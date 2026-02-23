@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>数学与战斗 文档 · 概念与常量</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="header">
+        <div class="wrapper">
+            <a class="left" href="./index.html"><span>首页</span></a>
+            <a class="left" href="./index_pConst.html"><span>概念与常量</span></a>
+            <a class="left" href="./index_pMethod.html"><span>组合与方法</span></a>
+            <a class="right" href="../index.html"><span>站主页</span></a>
+        </div>
+    </div>
+    <div id="bottom">
+        <div id="toggler">
+            
+        </div>
+        <div id="content">
+
+            <h1 id="txt-Main">单位</h1>
+
+            <h2 id="txt-Block">块 <small>( 个人简称 B Block )</small></h2>
+            
+            <p>一个方块，是一个块。</p>
+            <p>一万个方块，是一个岛！</p>
+            <p>方块组成了区块。</p>
+
+            <h2 id="txt-UnitBlock">区块 <small>( 个人简称 UB UnitBlock )</small></h2>
+
+            <blockquote>进入 “数学与游戏 - math2fight” ，走动时会标记你正在走过的区块。( 不会重复标记 )</blockquote>
+            <p>在迷你世界中，区块是构成地图的基本单位。一个区块的尺寸为 <b>16×256×16</b> 个方块。</p>
+            <p>右上角地图更新需要渲染，渲染需要区块计算。</p>
+            <p>它似无形，却又有形。</p>
+            <img src="./img/pConstUnit_AreaBlock.png" alt="区块示意图">
+
+            <h2 id="txt-Tick">游戏刻 <small>( 个人简称 T Tick )</small></h2>
+            
+            <p>游戏刻是迷你世界中时间的基本单位。每秒钟有 <b>20</b> 个游戏刻。( 每个游戏刻 <b>0.05</b> 秒 )</p>
+            <p>用俗话说：</p>
+            <pre>ScriptSupportEvent:registerEvent([=[Game.RunTime]=],fun)<br>-- 世界Tick变化  second,ticks</pre>
+            <p>这可不是一分一秒的流逝，是1/20秒的流逝。</p>
+        </div>
+    </div>
+    <script src="./auto_pConst.js"></script>
+</body>
+
+</html>
