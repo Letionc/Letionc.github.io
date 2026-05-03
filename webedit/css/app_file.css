@@ -1,3 +1,7 @@
+.unfinished{
+    opacity: 0.3;
+    cursor: not-allowed;
+}
 a {
     text-decoration: none;
     color: #48c;
@@ -12,15 +16,14 @@ body {
     width: max(20vw, min(300px, 100vw));
     background-color: #ccf;
     position: absolute;
-    height: 100vh;
+    height: calc(100vh - 57px);
 }
 #file-area.fileOpened {
     display: block;
 }
-#app.fileOpened {
+#codeEditor.fileOpened {
     transform: translateX(max(20vw, min(300px, 100vw)));
     width: calc(100vw - max(20vw, min(300px, 100vw)));
-    height: 100vh;
 }
 .file-item-btn {
     width: 100%;
@@ -34,6 +37,14 @@ body {
     padding: 5px;
     font-size: 30px;
     height: 50px;
+}
+.menu-item-btn>img {
+    width: 19px;
+    height: 19px;
+}
+.menu-item-btn.img{
+    width: 40px;
+    min-width: 40px;
 }
 #fn {
     position: absolute;
@@ -167,4 +178,24 @@ body {
     width: 100%;
     height: 0;
     text-align: center;
+}
+
+.cmdplt-wrapper{
+    position: absolute;
+    left:30vw;
+    width: 40vw;
+}
+#cmdpltInput {
+    width: 100%;
+    height: 100%;
+    padding: 3px;
+    font-size: 16px;
+    border: 2px solid #666;
+    color: #111;
+    background-color: #fff;
+    border-radius: 8px;
+}
+#cmdpltInput:focus {
+    outline: none;
+    border-color: #48c;
 }

@@ -1,4 +1,4 @@
-var GetSnippetText=()=>
+var GetSnippetTextV3=()=>
 	"\n\
 snippet local var\n\
 	local ${1:val} = ${2:0}\n\
@@ -266,7 +266,7 @@ snippet V3 UI Script模板\n\
 	end\n\
 	return Script\n\
 ";
-var GetServiceFuncs=()=>[
+var GetServiceFuncsV3=()=>[
 {"meta":"World","type":"local","score":9,"name":"World.StopParticleOnPos","caption":"World:StopParticleOnPos","value":"World:StopParticleOnPos(x,y,z,particleId)\n-- 返回：code:bool成功(true)"},
 {"meta":"World","type":"local","score":9,"name":"World.SetParticleTransform","caption":"World:SetParticleTransform","value":"World:SetParticleTransform(pos,particleIdArg,offset,rot,scale)\n-- 返回：code:bool成功(true)"},
 {"meta":"World","type":"local","score":9,"name":"World.PlayParticle","caption":"World:PlayParticle","value":"World:PlayParticle(pos,particleIdArg,ptimeArg,offset,rot,scale)\n-- 返回：code:bool成功(true)"},

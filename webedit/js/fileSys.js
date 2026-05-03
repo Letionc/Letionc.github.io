@@ -5,7 +5,7 @@
     var filesSpace = new IndexedDBUtils("files", 2);
     var fileWrapper = $s("#file-area");
     var fileList = $s(".file-list");
-    var editorApp = $s("#app");
+    var editorCode = $s("#codeEditor");
     var loading = $s("#loadPage");
     var fnInput = $s("#fn");
     var updated = $s("#updated");
@@ -13,7 +13,7 @@
     var fileArray = {};
     var sessionAreaText = "";
     var LS = localStorage;
-    var ttl = Array.from(
+    window.ttl = Array.from(
         new Array(8),
         (e) => "0123456789abcdef"[Math.floor(Math.random() * 16)],
     ).join("");
@@ -141,7 +141,7 @@
         }
         get() {
             return window.aceEditor
-                ? window.aceEditor.session.doc.$lines.join("\n")
+                ? window.aceEditor.getValue()
                 : "";
         }
         saveFile() {
@@ -328,11 +328,11 @@
     }, 2000);
     $s("#fileCloseBtn").listen("click", function (e) {
         fileWrapper.CLASS("fileOpened");
-        editorApp.CLASS("fileOpened");
+        editorCode.CLASS("fileOpened");
     });
     $s("#fileBton").listen("click", function (e) {
         fileWrapper.class("fileOpened");
-        editorApp.class("fileOpened");
+        editorCode.class("fileOpened");
     });
     $s("#fileAddBtn").listen("click", function (e) {
         var a = $c("input")

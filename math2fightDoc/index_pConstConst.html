@@ -31,11 +31,13 @@
             <p>将每 Tick 的下落速度和 前缀和 结合，可以得到下落总距离。</p>
             <blockquote>记得乘上重力！默认为 1.0</blockquote>
             <p>以下为自由下落近似函数与图：y = 1.94 g ( 2.32 ^ {-t} - 1 )</p>
-            <p>y为下落速度(b/t)，g为重力，t为时间(sec)：y = 1.94 g ( 2.32 <sup>-t</sup> - 1 )</p>
+            <p>y为上升速度(b/t)，g为重力，t为时间(sec)：y = 1.94 g ( 2.32 <sup>-t</sup> - 1 )</p>
             <img src="./img/pConstConst_Fall.png" alt="函数图">
             <p>以下为带初速度近似函数与图：y = (v_0 + 1.94g) 2.2142174^{-t} - 1.94g</p>
-            <p>y为下落速度(b/t)，g为重力，v<sub>0</sub>为初速度，t为时间(sec)：y = (v<sub>0</sub> + 1.94g) 2.2142174<sup>-t</sup> - 1.94g</p>
+            <p>y为上升速度(b/t)，g为重力，v<sub>0</sub>为初速度(b/t)，t为时间(sec)：y = (v<sub>0</sub> + 1.94g) 2.2142174<sup>-t</sup> - 1.94g</p>
             <img src="./img/pConstConst_Fall3.png" alt="函数图">
+            <p>微积分结果：y = -( ( v_0+1.94g ) / ln 2.2142174 ) ( 2.2142174^{-t} - 1 ) - 1.94gt</p>
+            <p>y为上升总距离(b)，g为重力，v<sub>0</sub>为初速度(b/t)，t为时间(sec)：y = -( ( v<sub>0</sub> + 1.94g ) / ln 2.2142174 ) ( 2.2142174<sup>-t</sup> - 1 ) - 1.94gt</p>
             
             <h2 id="txt-Forward">走路和奔跑</h2>
             

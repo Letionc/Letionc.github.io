@@ -363,17 +363,21 @@ var ln = Math.log;
 // function getYD_fromT(t) {
 //     return 1.94 * gravity * (Math.pow(2.32, -t) - 1);
 // }
-function getY_fromT(t) {
-    if (t < 0) {
-        return -getY_fromT(-t);
-    }
-    if (t > maxT_fromY) {
-        return (
-            y_frr[y_arrLen - 1] +
-            maxY * (Math.round(t * 20) - y_arrLen + 1)
-        );
-    }
-    return y_frr[Math.floor(t * 20)];
+// function getY_fromT(t) {
+//     if (t < 0) {
+//         return -getY_fromT(-t);
+//     }
+//     if (t > maxT_fromY) {
+//         return (
+//             y_frr[y_arrLen - 1] +
+//             maxY * (Math.round(t * 20) - y_arrLen + 1)
+//         );
+//     }
+//     return y_frr[Math.floor(t * 20)];
+// }
+function getY_fromT(t, v0) {
+    // return (v0 + 1.94 * gravity) * Math.pow(2.2142174, -t) - 1.94 * gravity;
+    return -( ( -v0 + 1.94 * gravity ) / ln(2.2142174) ) * ( Math.pow(2.2142174, -t) - 1 ) * 20 - 38.8 * t * gravity;
 }
 function getX_fromT(t) {
     if (t < 0) {
@@ -440,9 +444,9 @@ function getT_fromY(y) {
 //     }
 //     return l / 20;
 // }
-function getT_fromV0(v0) {
+function getT_fromYaV0(y, v0) {
     // time is new. we dont use array hahaha
-    return ln( v0 / gravity / 1.94 + 1) / ln(2.2142174);
+    return ln( (v0 + 1.94 * gravity) / (1.94 * gravity + y) ) * 2 / ln(2.2142174);
 }
 function getT_fromX(x) {
     if (x < 0) {
@@ -509,16 +513,18 @@ var setElemX_fromT = (t = +elemT.value) =>
     (speed || 1)
 ).toFixed(2));
 
-var setElemY_fromT = (t = +elemT.value) =>
-    (elemY.value = (getY_fromT(t) * (gravity || 1)).toFixed(2));
+var setElemY_fromT = (t = +elemT.value, v0 = +elemY_V0.value) =>
+    (elemY.value = (-getY_fromT(t, v0)).toFixed(2));
+    // (elemY.value = (getY_fromT(t + getT_fromYaV0(v0 / gravity)) * gravity).toFixed(2));
 
 var setElemT_fromX = (x = +elemX.value) =>
 (elemT.value = getT_fromX(
     x / (isRun ? const_X_R : 1) / (speed || 1),
 ).toFixed(2));
 
-var setElemT_fromY = (y = +elemY.value) =>
-    (elemT.value = (getT_fromY(y / (gravity || 1))).toFixed(2));
+var setElemT_fromY = (y = +elemY.value, v0 = +elemY_V0.value) =>
+    (elemT.value = (-getT_fromYaV0(y, v0)).toFixed(2));
+// (elemT.value = (getT_fromY(y / gravity) + getT_fromV0(v0 / gravity)).toFixed(2));
 
 elemT.elem.addEventListener("input", (e) => {
     isTInputed = true;
@@ -531,14 +537,15 @@ elemY.elem.addEventListener("input", (e) => {
     setElemT_fromY();
     setElemX_fromT();
 }); // changeT_fromY
-elemY_D.elem.addEventListener("input", (e) => {
-    isTInputed = false;
-    setElemT_fromYD();
-    setElemX_fromT();
-    setElemY_fromT();
-}); // changeT_fromDY
+elemY_V0.elem.addEventListener("input", (e) => {
+    if (isTInputed) setElemY_fromT();
+    else {
+        setElemT_fromY();
+        setElemX_fromT();
+    }
+}); // changeT_fromV0
 elemY_G.elem.addEventListener("input", (e) => {
-    gravity = +elemY_G.value;
+    gravity = (+elemY_G.value) || 1;
     if (isTInputed) setElemY_fromT();
     else {
         setElemT_fromY();

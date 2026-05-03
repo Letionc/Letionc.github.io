@@ -18,12 +18,15 @@
 		<h2>代码编辑器正在加载 / <b>V3</b></h2>
 		<h1>Please wait a minute...</h1>
 		<h2>请稍等一会儿...</h2>
+		<h3 data-cf>insertConfig loading...</h3>
+		<h3 data-all>binder code help loading ...</h3>
+		<h3 data-noil>Native Open ID Library loading ...</h3>
+		<h3 data-snfx>Snippet fixer loading ...</h3>
+		<h3 data-app>Editor app loading...</h3>
+		<h3 data-db>data loading...</h3>
+		<h3 data-v1>v1 code help loading ...</h3>
 		<h3 data-v3-1>v3 code help loading (1) ...</h3>
 		<h3 data-v3-2>v3 code help loading (2) ...</h3>
-		<h3 data-db>data loading...</h3>
-		<h3 data-cf>insertConfig loading...</h3>
-		<h3 data-app>Editor app loading...</h3>
-		<h3 data-noil>Native Open ID Library loading ...</h3>
 		<a href="javascript:$s('#loadPage').remove();" autofocus>跳过加载页面</a>
 	</div>
 	<div id="app">
@@ -107,8 +110,12 @@
 						<button class="font-btn menu-item-btn img" id="fontBtn"><img src="../img/fontsizeBtn.svg" alt="字体"></button>
 						<div class="font-inner menu-item-inner" id="fontInner">
 							<ul class="font-list">
+								<li class="font-item" data-size="10px">10px</li>
+								<li class="font-item" data-size="12px">12px</li>
+								<li class="font-item" data-size="14px">14px</li>
 								<li class="font-item" data-size="16px">16px</li>
 								<li class="font-item" data-size="18px">18px</li>
+								<li class="font-item" data-size="20px">20px</li>
 								<li class="font-item" data-size="22px">22px</li>
 								<li class="font-item" data-size="24px">24px</li>
 								<li class="font-item" data-size="26px">26px</li>
@@ -169,8 +176,8 @@
 				
 				<!--- CommandPallete by Letionc --->
 				<li class="menu-item">
-					<div class="menu-item-wrapper cmdplt-wrapper unfinished" id="cmdpltWrapper">
-						<input type="text" id="cmdpltInput" disabled placeholder="Command Palette (F1) (还没做完喵……)" autocomplete="off" spellcheck="false">
+					<div class="menu-item-wrapper cmdplt-wrapper" id="cmdpltWrapper">
+						<input type="text" id="cmdpltInput" placeholder="Command Palette (F1) (主人是怎么找到这的！？)" autocomplete="off" spellcheck="false">
 					</div>
 				</li>
 			</ul>
@@ -180,7 +187,7 @@
 				<ul class="menu-wrapper clearfix">
 					<li class="menu-item file-menu-item">
 						<div class="menu-item-wrapper">
-							<h1>文件系统 <a href="./index.html">V3</a></h1>
+							<h1>文件系统 <a href="javascript: versionSwitch() ;" id="versionSwitcher">V1</a></h1>
 							<a href="javascript:;" id="fileCloseBtn" class="file-link-btn" style="right:10px;top:8px;position:absolute;border:none;">
 								×
 							</a>
@@ -230,15 +237,19 @@
 		<!--wiki模块-->
 		<div id="devWiki" class="dev-wiki">
 			<div id="devWikiBar" class="dev-wiki-bar" ></div>
-			<iframe src="https://dev-wiki.mini1.cn/ugc-wiki/" frameborder="0"></iframe>
+			<iframe src="https://developers.mini1.cn/wiki/" frameborder="0" id="dev-wiki-iframe"></iframe>
 			<button type="button" id="toggleWikiBtn" class="btn toggle-wiki-btn">Wiki</button>
 		</div>
 	</div>
 	<script src="./js/loadpage.js"></script>
+	<script src="./js/insertCodeConfig.js"></script>
+	<script src="./js/datapack_all.js"></script>
+    <script src="./js/NativeOpenIDLibrary.js"></script>
+	<script src="./js/snippet_fixer.js"></script>
+    <script type="text/javascript" src="./js/app_all.js"></script>
+    <script src="./js/fileSys.js"></script>
+	<script src="./js/datapack.js"></script>
 	<script src="./js/datapack_v3_1.js"></script>
 	<script src="./js/datapack_v3_2.js"></script>
-	<script src="./js/insertCodeConfig.js"></script>
-<script type="text/javascript" src="./js/app_v3.js"></script></body>
-	<script src="./js/fileSys.js"></script>
-	<script src="./js/NativeOpenIDLibrary.js"></script>
+</body>
 </html>

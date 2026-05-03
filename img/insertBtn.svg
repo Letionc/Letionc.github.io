@@ -1,0 +1,7 @@
+<svg width="50" height="50" fill="transparent" stroke="#000" stroke-width="3" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+    <!-- bg(not required in html) -->
+    <!-- <rect width="100" height="100" fill="#fff" /> -->
+    <!-- strokes -->
+    <path d="M10 25L40 25"/>
+    <path d="M25 10L25 40"/>
+</svg>

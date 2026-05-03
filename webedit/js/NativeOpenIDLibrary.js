@@ -19,7 +19,7 @@ var NativeOpenIDLibraryList = {
         window.fileOperations
             .saveLocalFile(
                 window.fileOperations.get(),
-                window.operatingFn + ".lua",
+                (window.operatingFn||"session") + ".lua",
                 "text/lua",
             )
             .then(
@@ -38,7 +38,7 @@ var NativeOpenIDLibraryList = {
         ) && window.fileOperations.replaceSessionTxt("");
     },
     [4001]: function () {
-        window.open("https://dev-wiki.mini1.cn/ugc-wiki/", "_blank");
+        window.open(getDevwikiUrlAll(), "_blank");
     },
     [4002]: function () {
         window.open("https://mini1.feishu.cn/share/base/form/shrcnIDLRuNzrnbRyhb4kPv4Lhl", "_blank");
@@ -47,3 +47,7 @@ var NativeOpenIDLibraryList = {
 var NativeOpenIDLibrary = function (i) {
     return NativeOpenIDLibraryList[i] && window.NativeOpenIDLibraryList[i]();
 };
+var NativeSaveScript = function(e) {
+    window.fileOperations.saveFile();
+}
+$s('#loadPage>h3[data-noil]').remove();

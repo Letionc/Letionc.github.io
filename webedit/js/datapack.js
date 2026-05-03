@@ -1,5 +1,7 @@
 function GetSnippetText() {
 	var snippet = "\n\
+snippet v1test\n\
+	local ${1:val} = ${2:0}\n\
 snippet local var\n\
 	local ${1:val} = ${2:0}\n\
 snippet local table\n\
