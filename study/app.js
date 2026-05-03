@@ -196,11 +196,16 @@ function nextBtnHandler(e) {
 updateRandomProblem();
 elemSUBMITBTN.listen("click", submitBtnHandler);
 elemNEXTBTN.listen("click", nextBtnHandler);
-elemEXITBTN.listen("click", (e) => open(".", "_self", ""));
+elemEXITBTN.listen("click", (e) => location.assign("../index.html"));
 elemEXITBTN.listen(
     "contextmenu",
     (e) => (e.preventDefault(), location.reload()),
 );
+$S(".header").map(e=>e.listen("click", (e) => location.assign("../index.html")));
+$S(".header").map(e=>e.listen(
+    "contextmenu",
+    (e) => (e.preventDefault(), location.reload()),
+));
 
 function frame() {
     elemDATETIME.inhtml(translateDate(new Date()));
