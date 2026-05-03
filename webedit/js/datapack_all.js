@@ -1,18 +1,18 @@
 //Version Switcher
 var version=0;
-const VERSIONS=[
+var VERSIONS=[
     "V1",
     "V3",
     "Txt",
 ];
 
-const VERSION_TO_API=[
+var VERSION_TO_API=[
     "",
     "V3",
     "Txt",
 ];
 
-const VERSION_TO_DEVWIKI_URL=[
+var VERSION_TO_DEVWIKI_URL=[
     "https://developers.mini1.cn/wiki/",
     "https://dev-wiki.mini1.cn/ugc-wiki/",
     "./nothing.html",
