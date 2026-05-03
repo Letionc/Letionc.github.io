@@ -31803,8 +31803,8 @@
                     });
                     (s.a.addCompleter({
                         getCompletions: function (e, t, i, n, r) {
-                            (r(null, GetGlobalVarsV3()),
-                                r(null, window.GetServiceFuncsV3()));
+                            (r(null, GetGlobalVarsAll()),
+                                r(null, window.GetServiceFuncsAll()));
                         },
                     }),
                         e.setTheme(
@@ -31815,7 +31815,7 @@
                         ),
                         f(e),
                         H(e));
-                    var t = window.GetSnippetTextV3();
+                    var t = window.GetSnippetTextAll();
                     return (
                         (function (e, t, i, n) {
                             var o = r.a.require("ace/snippets").snippetManager,
