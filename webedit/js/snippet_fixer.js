@@ -16,10 +16,6 @@ function convertSnippet(snippet_text) {
     
 }
 
-var SNIPPET_LIST_ = convertSnippet(window["GetSnippetText"]());
-var SNIPPET_LIST_V3 = convertSnippet(window["GetSnippetTextV3"]());
-var SNIPPET_LIST_Txt = convertSnippet(window["GetSnippetTextTxt"]());
-
-var GetSnippetListAll = ()=>(window['SNIPPET_LIST_'+VERSION_TO_API[version]]);
+var GetSnippetListAll = ()=>(convertSnippet(window["GetSnippetText"+VERSION_TO_API[version]]()));
 
 $s('#loadPage>h3[data-snfx]').remove();
