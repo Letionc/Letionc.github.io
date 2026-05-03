@@ -31804,7 +31804,8 @@
                     (s.a.addCompleter({
                         getCompletions: function (e, t, i, n, r) {
                             (r(null, GetGlobalVarsAll()),
-                                r(null, window.GetServiceFuncsAll()));
+                             r(null, window.GetServiceFuncsAll()),
+                             r(null, window.GetSnippetListAll()));
                         },
                     }),
                         e.setTheme(
