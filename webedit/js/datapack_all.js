@@ -48,8 +48,6 @@ function unswitchSnippetVer(){
     snippetManager.unregister(snippetList, file.scope);
 }
 function switchSnippetVer(){
-    $s("#dev-wiki-iframe").attr("src", getDevwikiUrlAll());
-
     const snippetManager = ace.require("ace/snippets").snippetManager;
     const file = snippetManager.files[aceEditor.session.$mode.$id];
 
@@ -69,6 +67,8 @@ function switchSnippetVer(){
         ++version;
         version%=VERSIONS.length;
         elem.innerText=VERSIONS[version];
+        
+        $s("#dev-wiki-iframe").attr("src", getDevwikiUrlAll());
         
         switchSnippetVer();
     })

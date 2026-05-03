@@ -31815,7 +31815,7 @@
                         ),
                         f(e),
                         H(e));
-                    var t = window.GetSnippetTextAll();
+                    var t = "";
                     return (
                         (function (e, t, i, n) {
                             var o = r.a.require("ace/snippets").snippetManager,
