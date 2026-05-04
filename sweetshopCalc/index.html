@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>账单计算器</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h1>账单计算器</h1>
+        <a href="./index.html"><b>返回</b></a>
+        <div class="product-list">
+            <label for="product-select">选择商品：</label
+            ><select id="product-select">
+                <option value="">-- 请选择商品 --</option></select
+            ><button id="add-btn">添加到账单</button>
+        </div>
+        <table id="bill-table">
+            <thead>
+                <tr>
+                    <th>商品名称</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>小计</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="total">总计：<span id="total-amount">0</span> 元</div>
+        <script src="./app.js"></script>
+    </body>
+</html>
