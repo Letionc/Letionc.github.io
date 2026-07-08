@@ -1,5 +1,5 @@
 var a = document.getElementById('1');
-document.getElementById('3').addEventListener(function (e) {
+document.getElementById('3').addEventListener("click", function (e) {
     try {
         this.innerText = String(eval(a.innerText));
         this.style.color = '#0f0'
