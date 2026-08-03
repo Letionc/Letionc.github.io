@@ -1,4 +1,4 @@
-我不买版权，付不起。
+自言自语，独歌独舞。
 
 # 我们有什么？
 
@@ -24,3 +24,4 @@
 
 [js runner](https://letionc.github.io/jsRunner/index.html)
 
+另外一个仓库不算在 Letionc.github.io 仓库中。
