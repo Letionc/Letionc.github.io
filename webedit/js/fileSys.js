@@ -74,10 +74,10 @@
          * @return {Promise<undefined | Error>} 成功返回undefined，失败返回Error对象
          */
         saveLocalFile(content, fileName, mimeType = "text/plain") {
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
                 try {
                     if (!content || !fileName) {
-                        resolve(new Error("内容和文件名不能为空"));
+                        reject(new Error("内容和文件名不能为空"));
                         return;
                     }
 
@@ -91,10 +91,8 @@
                     downloadLink.click();
                     document.body.removeChild(downloadLink);
                     URL.revokeObjectURL(downloadLink.href);
-
-                    resolve();
                 } catch (err) {
-                    resolve(new Error(`保存文件失败: ${err.message}`));
+                    reject(new Error(`保存文件失败: ${err.message}`));
                 }
             });
         }

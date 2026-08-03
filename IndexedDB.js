@@ -1,11 +1,24 @@
 class IndexedDBUtils {
+  /**
+   * @param {string} dbName
+   * @param {number} version
+   */
   constructor(dbName, version) {
+    /**@type {string}*/
     this.dbName = dbName;
+    /**@type {number}*/
     this.version = version;
+    /**@type {IDBDatabase | null}*/
     this.db = null;
   }
 
-  // 打开数据库连接
+  /**
+   * 打开数据库连接
+   * @param {string} storeName 
+   * @param {string} keyPath A-Za-z0-9_
+   * @param {Array<{[keyPath: string]: string, [k: string]: any}> | undefined} indexes Array of data.
+   * @returns {Promise<IDBDatabase>}
+   */
   async openDB(storeName, keyPath, indexes = []) {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.dbName, this.version);
@@ -31,7 +44,12 @@ class IndexedDBUtils {
     });
   }
 
-  // 创建/添加数据
+  /**
+   * 创建/添加数据
+   * @param {string} storeName 
+   * @param {{[keyPath: string]: string, [k: string]: any}} data 
+   * @returns {Promise<"Data added successfully">}
+   */
   async create(storeName,data) {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(storeName, 'readwrite');
@@ -43,7 +61,12 @@ class IndexedDBUtils {
     });
   }
 
-  // 删除数据
+  /**
+   * 删除数据
+   * @param {string} storeName 
+   * @param {string} key 
+   * @returns {Promise<"Data deleted successfully">}
+   */
   async delete(storeName, key) {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(storeName, 'readwrite');
@@ -55,7 +78,12 @@ class IndexedDBUtils {
     });
   }
 
-  // 查找数据
+  /**
+   * 查找数据
+   * @param {string} storeName 
+   * @param {string} key 
+   * @returns {Promise<{[keyPath: string]: string, [k: string]: any}>}
+   */
   async find(storeName, key) {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(storeName, 'readonly');
@@ -67,7 +95,11 @@ class IndexedDBUtils {
     });
   }
 
-  // 获取所有数据
+  /**
+   * 获取所有数据
+   * @param {string} storeName 
+   * @returns {Promise<Array<{[keyPath: string]: string, [k: string]: any}>>}
+   */
   async getAll(storeName) {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(storeName, 'readonly');
@@ -78,6 +110,13 @@ class IndexedDBUtils {
       request.onerror = (event) => reject(`Error getting all data: ${event.target.error}`);
     });
   }
+
+  /**
+   * 
+   * @param {string} storeName 
+   * @param {{[keyPath: string]: string, [k: string]: any}} data 
+   * @returns {Promise<"Data updated successfully">}
+   */
   async update(storeName, data) {
     if (!this.db) throw new Error('Database not initialized');
     return new Promise((resolve, reject) => {
@@ -85,8 +124,8 @@ class IndexedDBUtils {
       const store = transaction.objectStore(storeName);
       const request = store.put(data);
 
-      request.onsuccess = () => resolve('数据更新成功');
-      request.onerror = (event) => reject(`更新失败: ${event.target.error}`);
+      request.onsuccess = () => resolve('Data updated successfully');
+      request.onerror = (event) => reject(`Failed to update: ${event.target.error}`);
     });
   }
 }
