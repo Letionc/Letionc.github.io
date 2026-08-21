@@ -99,7 +99,7 @@ class Chess{
 		return {status: 'ok', winner: null};
 	}
 	
-	static domCreate(config = CHESS_DOMCREATE_DEFAULT_CONFIG){
+	domCreate(config = CHESS_DOMCREATE_DEFAULT_CONFIG){
 		const elem_grid = document.createElement('div');
 		elem_grid.style.height = "fit-content";
 		elem_grid.style.width = "fit-content";
@@ -126,6 +126,7 @@ class Chess{
 				elem_block.style.textAlign = "center";
 				elem_block.style.color = "#888";
 				elem_block.style.background = "#fff";
+				elem_block.tabIndex = "0";
 				elem_block.dataset.value = block;
 				(f=>f||(e=>e.innerHTML=''))(config[block])(elem_block);
 				elem_row.appendChild(elem_block);
@@ -134,7 +135,7 @@ class Chess{
 		}
 		return elem_grid;
 	}
-	static domGetP(elem_grid, y, x){
+	domGetP(elem_grid, y, x){
 		return elem_grid.children[y].children[x];
 	}
 	domUpdateP(y, x, elem_block, config = CHESS_DOMCREATE_DEFAULT_CONFIG){
@@ -148,7 +149,7 @@ class Chess{
 			)
 		);
 	}
-	static domListen(elem_grid, type, listener){
+	domListen(elem_grid, type, listener){
 		Array.from(elem_grid.children).forEach(
 			(r,y) => Array.from(r.children).forEach(
 				(e,x) => e.addEventListener(type, event => listener(event, e, y, x))
