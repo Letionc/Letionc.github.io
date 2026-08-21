@@ -43,7 +43,7 @@ function chessCreate(handlers, h = 15, w = 15, wincnt = 5, checker = [[0,1],[1,1
 
 */
 // (e=>(,e))(document.createElement(""))
-document.getElementById("btn-create-instance").addEventListener("click", event => {
+const handleClick = () => {
 	const config = {
 		w: +document.getElementById("inp-w").value,
 		h: +document.getElementById("inp-h").value,
@@ -101,7 +101,7 @@ document.getElementById("btn-create-instance").addEventListener("click", event =
 			res.chess.domUpdateAll(res.dom);
 		}),
 		e
-	))(document.createElement("label"));
+	))(document.createElement("button"));
 	document.body.appendChild((e=>(
 		e.style.border = "1px solid #888",
 		// e.appendChild((e=>e)(document.createElement("br"))),
@@ -115,4 +115,11 @@ document.getElementById("btn-create-instance").addEventListener("click", event =
 		e.appendChild(res.dom),
 		e
 	))(document.createElement("div")));
+}
+document.getElementById("btn-create-instance").addEventListener("click", event => {
+	try{
+		handleClick();
+	}catch(err){
+		document.body.appendChild((e=>(e.innerText = err,e.style.color="#f00",e))(document.createElement('p')));
+	}
 });
