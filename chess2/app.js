@@ -9,18 +9,20 @@ function chessCreate(handlers, h = 15, w = 15, wincnt = 5, checker = [[0,1],[1,1
 		getWinner: chess.getWinner,
 	};
 	handlers = handlers || {};
-	handlers.down = handlers.down || ret => console.log("chess.down => "+String(ret));
-	handlers.up = handlers.up || ret => console.log("chess.up => "+String(ret));
+	handlers.isUp = handlers.isUp || (() => true);
+	handlers.down = handlers.down || (ret => console.log("chess.down => "+String(ret)));
+	handlers.up = handlers.up || (ret => console.log("chess.up => "+String(ret)));
 	
 	chess.domListen(chess_dom, "click", (_,e,y,x) => {
-		const ret = chess.down(y, x, (cnt++) & 1? "w": "b");
+		var ret = null;
+		if(handlers.isUp()){
+			ret = chess.up(y, x);
+		}else{
+			ret = chess.down(y, x, cnt & 1? "w": "b");
+			(ret.status == "ok") && ++cnt;
+		}
 		chess.domUpdateP(y, x, e);
 		handlers.down(ret);
-	});
-	chess.domListen(chess_dom, "countextmenu", (_,e,y,x) => {
-		const ret = chess.up(y, x);
-		chess.domUpdateP(y, x, e);
-		handlers.up(ret);
 	});
 	
 	return res;
@@ -42,7 +44,7 @@ function chessCreate(handlers, h = 15, w = 15, wincnt = 5, checker = [[0,1],[1,1
 <p>胜利者：null</p>
 
 */
-// (e=>(,e))(document.createElement(""))
+// (e=>(e))(document.createElement(""))
 const handleClick = () => {
 	const config = {
 		w: +document.getElementById("inp-w").value,
@@ -58,8 +60,16 @@ const handleClick = () => {
 		e.innerHTML = '获胜者：null',
 		e
 	))(document.createElement("p"));
+	const inp_isup = (e=>(
+		e.type = "checkbox",
+		e.checked = false,
+		e
+	))(document.createElement("input"));
 	
 	const handlers = {
+		isUp: () => {
+			return inp_isup.checked;
+		},
 		down: ret => {
 			const status = ret.status;
 			p_status.innerText = `操作返回值：${JSON.stringify(ret)}`;
@@ -110,13 +120,18 @@ const handleClick = () => {
 			e
 		))(document.createElement("p"))),
 		e.appendChild(button_init),
+		e.appendChild((e=>(
+			e.innerText = "选择点击悔棋：",
+			e.appendChild(inp_isup),
+			e
+		))(document.createElement("label"))),
 		e.appendChild(p_status),
 		e.appendChild(p_winner),
 		e.appendChild(res.dom),
 		e
 	))(document.createElement("div")));
 }
-document.getElementById("btn-create-instance").addEventListener("click", event => {
+document.getElementById("btn_create_instance").addEventListener("click", event => {
 	try{
 		handleClick();
 	}catch(err){
