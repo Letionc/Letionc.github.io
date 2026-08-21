@@ -108,7 +108,7 @@ document.getElementById("btn-create-instance").addEventListener("click", event =
 		e.appendChild((e=>(
 			e.innerText = JSON.stringify(config),
 			e
-		))(document.createElement("p")))
+		))(document.createElement("p"))),
 		e.appendChild(button_init),
 		e.appendChild(p_status),
 		e.appendChild(p_winner),
