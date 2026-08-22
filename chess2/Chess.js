@@ -86,11 +86,19 @@ class Chess{
 			return {status: 'error', msg: "EMTY"};
 		}
 		const v = this.table[y][x];
-		this.table[y][x] = null;
+		var is_win = false;
 		
-		if(this.win !== v) return {status: 'ok', winner: this.win};
 		for(const e of this.checker){
-			if(this.check(e[0], e[1], v)){
+			if(this.check(y, x, ch, e[0], e[1], this.wincnt)){
+				is_win = true;
+				break;
+			}
+		}
+		this.table[y][x] = null;
+		if(!is_win) return {status: 'ok', winner: this.win};
+		
+		for(const e of this.checker){
+			if(this.check(y, x, ch, e[0], e[1], this.wincnt+1)){
 				return {status: 'ok', winner: this.win};
 			}
 		}
