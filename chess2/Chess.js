@@ -43,9 +43,10 @@ class Chess{
 	getc(y, x){
 		return this.isIn(y, x)? this.table[y][x]: undefined;
 	}
-	check(y, x, ch, dy = 1, dx = 0, cnt = 5){
+	check(y, x, ch, dy = 1, dx = 0, cnt = 5, cntgo = null){
+		if(cntgo === null) cntgo = cnt;
 		var now = 0;
-		for(let i = -cnt; i <= cnt; ++i){
+		for(let i = 1-cntgo; i < cntgo; ++i){
 			if(this.getc(y+dy*i, x+dx*i) === ch){
 				++now;
 			}else{
@@ -89,7 +90,7 @@ class Chess{
 		var is_win = false;
 		
 		for(const e of this.checker){
-			if(this.check(y, x, ch, e[0], e[1], this.wincnt)){
+			if(this.check(y, x, v, e[0], e[1], this.wincnt)){
 				is_win = true;
 				break;
 			}
@@ -98,7 +99,7 @@ class Chess{
 		if(!is_win) return {status: 'ok', winner: this.win};
 		
 		for(const e of this.checker){
-			if(this.check(y, x, ch, e[0], e[1], this.wincnt+1)){
+			if(this.check(y, x, v, e[0], e[1], this.wincnt, this.wincnt+1)){
 				return {status: 'ok', winner: this.win};
 			}
 		}
