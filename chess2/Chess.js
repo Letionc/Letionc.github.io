@@ -102,7 +102,8 @@ class Chess{
 	domCreate(config = CHESS_DOMCREATE_DEFAULT_CONFIG){
 		const elem_grid = document.createElement('div');
 		elem_grid.style.height = "fit-content";
-		elem_grid.style.width = "fit-content";
+		elem_grid.style.maxWidth = "100%";
+		elem_grid.style.overflow = "auto";
 		elem_grid.style.borderCollapse = "collapse";
 		elem_grid.style.border = "1px solid #000";
 		elem_grid.style.display = "block";
@@ -110,7 +111,7 @@ class Chess{
 		for(const row of this.table){
 			const elem_row = document.createElement('div');
 			elem_row.style.height = "fit-content";
-			elem_row.style.width = "fit-content";
+			elem_row.style.width = "max-content";
 			elem_row.style.borderCollapse = "collapse";
 			elem_row.style.border = "1px solid #000";
 			elem_row.style.display = "block";
@@ -126,8 +127,6 @@ class Chess{
 				elem_block.style.textAlign = "center";
 				elem_block.style.color = "#888";
 				elem_block.style.background = "#fff";
-				elem_block.tabIndex = "0";
-				elem_block.dataset.value = block;
 				(f=>f||(e=>e.innerHTML=''))(config[block])(elem_block);
 				elem_row.appendChild(elem_block);
 			}
