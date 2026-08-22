@@ -2,27 +2,31 @@ function chessCreate(handlers, h = 15, w = 15, wincnt = 5, checker = [[0,1],[1,1
 	const chess = new Chess(h, w, wincnt, checker);
 	const chess_dom = chess.domCreate();
 	var cnt = 0;
+	handlers = handlers || {};
+	handlers.isUp = handlers.isUp || (() => true);
+	handlers.init = handlers.init || ((ret, v) => console.log("chess.init => "+String(ret)));
+	handlers.down = handlers.down || ((ret, v) => console.log("chess.down => "+String(ret)));
+	handlers.up = handlers.up || (ret => console.log("chess.up => "+String(ret)));
 	const res = {
 		chess: chess,
 		dom: chess_dom,
-		init: (h, w, wincnt, checker) => (cnt=0, chess.init(h, w, wincnt, checker)),
+		init: (h, w, wincnt, checker) => (cnt=0, chess.init(h, w, wincnt, checker), handlers.init({status: "ok", winner: null}, "w")),
 		getWinner: chess.getWinner,
 	};
-	handlers = handlers || {};
-	handlers.isUp = handlers.isUp || (() => true);
-	handlers.down = handlers.down || (ret => console.log("chess.down => "+String(ret)));
-	handlers.up = handlers.up || (ret => console.log("chess.up => "+String(ret)));
 	
 	chess.domListen(chess_dom, "click", (_,e,y,x) => {
 		var ret = null;
 		if(handlers.isUp()){
 			ret = chess.up(y, x);
+			chess.domUpdateP(y, x, e);
+			handlers.up(ret);
 		}else{
-			ret = chess.down(y, x, cnt & 1? "w": "b");
+			const opt = cnt & 1? "w": "b";
+			ret = chess.down(y, x, opt);
 			(ret.status == "ok") && ++cnt;
+			chess.domUpdateP(y, x, e);
+			handlers.down(ret, opt);
 		}
-		chess.domUpdateP(y, x, e);
-		handlers.down(ret);
 	});
 	
 	return res;
@@ -60,6 +64,10 @@ const handleClick = () => {
 		e.innerHTML = '获胜者：null',
 		e
 	))(document.createElement("p"));
+	const p_next = (e=>(
+		e.innerHTML = '下一步棋：黑',
+		e
+	))(document.createElement("p"));
 	const inp_isup = (e=>(
 		e.type = "checkbox",
 		e.checked = false,
@@ -70,12 +78,24 @@ const handleClick = () => {
 		isUp: () => {
 			return inp_isup.checked;
 		},
-		down: ret => {
+		init: (ret, v) => {
 			const status = ret.status;
 			p_status.innerText = `操作返回值：${JSON.stringify(ret)}`;
 			if(status == "ok"){
 				const transtab = {b:"黑", w:'白', [null]:"null"};
+				const distab = {w:"黑", b:'白', [null]:"null"};
 				p_winner.innerText = `获胜者：${transtab[ret.winner]}`;
+				p_next.innerText = `下一步棋：${distab[v]}`;
+			}
+		},
+		down: (ret, v) => {
+			const status = ret.status;
+			p_status.innerText = `操作返回值：${JSON.stringify(ret)}`;
+			if(status == "ok"){
+				const transtab = {b:"黑", w:'白', [null]:"null"};
+				const distab = {w:"黑", b:'白', [null]:"null"};
+				p_winner.innerText = `获胜者：${transtab[ret.winner]}`;
+				p_next.innerText = `下一步棋：${distab[v]}`;
 			}
 		},
 		up: ret => {
@@ -127,6 +147,7 @@ const handleClick = () => {
 		))(document.createElement("label"))),
 		e.appendChild(p_status),
 		e.appendChild(p_winner),
+		e.appendChild(p_next),
 		e.appendChild(res.dom),
 		e
 	))(document.createElement("div")));
