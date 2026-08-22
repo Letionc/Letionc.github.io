@@ -87,7 +87,7 @@ const handleClick = () => {
 			}
 		},
 	};
-	const res = chessCreate(handlers, config.w, config.h, config.wincnt, config.checker);
+	const res = chessCreate(handlers, config.h, config.w, config.wincnt, config.checker);
 	// const label_w = (e=>(
 		// e.innerHTML = '宽：<input type="number" min="5" step="1" value="15" placeholder="棋盘宽度，例如 15" disabled />',
 		// e
@@ -107,7 +107,7 @@ const handleClick = () => {
 	const button_init = (e=>(
 		e.innerHTML = '初始化',
 		e.addEventListener("click", event => {
-			res.chess.init(config.w, config.h, config.wincnt, config.checker);
+			res.chess.init(config.h, config.w, config.wincnt, config.checker);
 			res.chess.domUpdateAll(res.dom);
 		}),
 		e
