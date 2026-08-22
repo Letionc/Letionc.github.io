@@ -88,10 +88,10 @@ class Chess{
 		const v = this.table[y][x];
 		this.table[y][x] = null;
 		
-		if(this.win !== v) return {status: 'ok', winner: v};
+		if(this.win !== v) return {status: 'ok', winner: this.win};
 		for(const e of this.checker){
 			if(this.check(e[0], e[1], v)){
-				return {status: 'ok', winner: v};
+				return {status: 'ok', winner: this.win};
 			}
 		}
 		this.win = null;
